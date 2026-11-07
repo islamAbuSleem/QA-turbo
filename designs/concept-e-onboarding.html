@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>QA-Turbo — Onboarding (Create Project + Admin)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--green:#059669;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--mut:#F1F5FD;--mutfg:#475569;--bd:#E2E8F0;--red:#DC2626;--mono:'Fira Code',monospace;--sans:'Fira Sans',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--fg);line-height:1.5}:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top{height:56px;background:#fff;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:0 20px}
+.top .logo{background:var(--blue);color:#fff;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-weight:700}
+.wrap{max-width:520px;margin:32px auto;padding:0 16px}
+.card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:24px}
+label{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
+input,select{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font:inherit}
+input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.hint{font-size:12px;color:var(--mutfg);margin-top:4px}.err{font-size:13px;color:var(--red);margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;border-radius:8px;font-weight:600;width:100%}
+.btn-p{background:var(--blue);color:#fff;margin-top:20px}.btn-p:hover{background:#1D4ED8}
+.btn-o{background:#fff;border:1px solid var(--bd);margin-top:10px}
+.steps{display:flex;gap:8px;margin-bottom:20px}.steps span{flex:1;padding:8px;text-align:center;font-size:13px;background:var(--mut);border-radius:8px;border:1px solid var(--bd)}.steps b{display:block}
+.note{font-size:13px;color:var(--mutfg);text-align:center;margin-top:16px}
+</style></head><body>
+<header class="top"><span class="logo">Q</span><b>QA-Turbo</b><span style="margin-left:auto;font-size:13px;color:var(--mutfg)">New workspace</span></header>
+<div class="wrap"><div class="steps"><span><b>Step 1 of 2</b>Create Project + Admin</span><span><b>Step 2</b>Invite Team</span></div>
+<section class="card">
+<h1 style="margin:0;font-size:24px">Create your project</h1><p style="color:var(--mutfg)">You'll be the admin. Later you can add analysts, testers and viewers.</p>
+<label for="proj">Project name</label><input id="proj" value="Checkout Core" required>
+<label for="email">Admin email</label><input id="email" type="email" value="admin@qa-turbo.local" required><div class="hint">We use this to log you in.</div>
+<label for="pw">Admin password</label><input id="pw" type="password" value="••••••••" required><div class="hint">Min 8 characters. Good: 12+ chars with numbers.</div>
+<label for="pw2">Confirm password</label><input id="pw2" type="password" value="••••••••" required><div class="err">Passwords must match.</div>
+<button class="btn btn-p">Create Project & Admin →</button>
+<button class="btn btn-o">I already have an account → Login</button>
+<p class="note">Empty state: no project yet. Once created you'll go to BRD Upload (Stage 1).</p>
+</section>
+<p class="note">After this step, admin goes to <b>User Management</b> to create users with roles.</p></div></body></html>

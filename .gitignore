@@ -1,0 +1,20 @@
+# deps / build
+node_modules/
+dist/
+.nuxt/
+.output/
+*.local
+uploads/
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.log
+coverage/
+
+# IDE
+.idea/

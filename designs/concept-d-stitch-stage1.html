@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>QA-Turbo — Stitch Stage 1: BRD Ingestion & Business Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--blue2:#1D4ED8;--green:#059669;--amber:#D97706;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--mut:#F1F5FD;--mutfg:#475569;--bd:#E2E8F0;--red:#DC2626;--mono:'Fira Code',monospace;--sans:'Fira Sans',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--fg);font-size:15px;line-height:1.5}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}button{font:inherit;cursor:pointer}
+.top{height:56px;background:#fff;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:0 20px}
+.top .logo{background:var(--blue);color:#fff;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-weight:700}
+.top .meta{color:var(--mutfg);font-size:13px}.chip{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--bd);background:var(--mut)}
+.chip-ok{background:#ECFDF5;color:#047857;border-color:#A7F3D0}.chip-bad{background:#FEF2F2;color:#B91C1C;border-color:#FECACA}
+.layout{display:grid;grid-template-columns:250px 340px 1fr;gap:0;min-height:calc(100vh - 56px)}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.side{flex-direction:row;flex-wrap:wrap}.side h3{width:100%}}
+.side{border-right:1px solid var(--bd);padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.side h3{font-size:11px;letter-spacing:.08em;color:var(--mutfg);margin:12px 8px 4px}
+.side a{padding:8px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-size:14px;display:flex;gap:8px;align-items:center}
+.side a.on{background:var(--blue);color:#fff}
+.col{padding:16px;border-right:1px solid var(--bd);background:#fff}
+.col.right{border:0;background:var(--bg)}
+.drop{border:2px dashed var(--blue2);border-radius:12px;padding:20px;text-align:center;background:#EFF6FF}
+.drop .big{font-weight:600}.drop p{color:var(--mutfg);font-size:13px}
+.file{padding:12px;border:1px solid var(--bd);border-radius:8px;margin-top:10px}
+.file.active{border-color:var(--blue);background:#EFF6FF}
+.file .name{font-weight:600;font-size:14px}
+.file .fid{font-family:var(--mono);font-size:12px;color:var(--mutfg)}
+.prog{height:6px;background:var(--bd);border-radius:999px;margin:8px 0}.prog i{display:block;height:100%;background:var(--blue);border-radius:999px}
+.err{background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;border-radius:8px;padding:10px;font-size:13px}
+.metric{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:12px}
+.metric .n{font-size:28px;font-weight:700;line-height:1.1}
+.metric .l{color:var(--mutfg);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mutfg);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+code{font-family:var(--mono);font-size:12px;background:var(--mut);padding:1px 6px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:0;border-radius:8px;font-weight:600}
+.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2)}
+.btn-o{background:#fff;border:1px solid var(--bd)}
+.actor{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--bd);border-radius:8px;padding:4px 8px;font-size:12px;background:#fff;margin:2px}
+</style></head>
+<body>
+<header class="top"><span class="logo">Q</span><b>QA-Turbo</b><span class="meta">Project: Checkout Core v2.4 ▾</span>
+<span class="meta">Stage 1: BRD Analysis › Stage 2: Test Writer › Stage 3: Execution Matrix</span>
+<span class="chip chip-ok" style="margin-left:auto">OPERATE MODE</span><span class="chip">Docs</span></header>
+<div class="layout">
+<aside class="side"><h3>INTAKE & PARSING</h3><a class="on">BRD Intake & Rules</a><a>Version Comparison</a><a>Requirement Matrix</a>
+<h3>PIPELINE STAGES</h3><a>Test Writer</a><a>Execution Matrix</a><a>Extraction Logs</a></aside>
+<section class="col"><div style="display:flex;justify-content:space-between;align-items:center"><b>Intake Specification</b><span class="meta" style="font-size:12px;color:var(--mutfg)">RFC-3986 Standard</span></div>
+<div class="drop" style="margin-top:12px"><div class="big">Drop BRD files here or <u>browse</u></div><p>Supports .md and .txt (max 10MB)</p></div>
+<h4 style="margin:16px 0 8px">Loaded Specifications <span class="chip">4</span> <span style="float:right;font-weight:400;font-size:12px">All (4) · Uploading (1) · Error (1) · Analyzed (2)</span></h4>
+<div class="file"><div class="name">checkout_flow_v2.md</div><div class="fid">brd_7F2B</div><div class="prog"><i style="width:68%"></i></div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--mutfg)"><span>Streaming 68%</span><span>2.4 MB/s</span></div></div>
+<div class="file" style="border-color:#FECACA;background:#FEF2F2"><div class="name">loyalty_rewards_empty.txt</div><div class="fid">brd_9C01</div><div class="err" style="margin-top:8px">Error: Empty file (0 bytes detected). Ingestion aborted.</div></div>
+<div class="file active"><div style="display:flex;justify-content:space-between"><span class="name">checkout_requirements_spec.md</span><span class="chip chip-ok">ANALYZED</span></div><div class="fid">brd_1E8A · 48 KB</div><div style="font-size:12px;color:var(--mutfg)">AST nodes: 49 specs · 12m ago</div></div>
+<div class="file"><div style="display:flex;justify-content:space-between"><span class="name">returns_policy_v1.md</span><span class="chip">DRAFT</span></div><div class="fid">brd_3B42 · 19 KB</div><div style="font-size:12px;color:var(--mutfg)">Pending structural review · 1h ago</div></div>
+</section>
+<section class="col right">
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b style="font-size:18px">Stage 1: BRD Ingestion & Business Analysis</b><span class="chip chip-ok">Engine v3.8 Active</span><span style="margin-left:auto;display:flex;gap:8px"><button class="btn btn-o">Export JSON/Markdown</button><button class="btn btn-p">Send to Test Writer →</button></span></div>
+<div class="file active" style="margin-top:12px"><code>brd_1E8A</code> <b>checkout_requirements_spec.md</b> <span class="chip chip-ok">98.4% Confidence</span> <span class="chip">Parsing Time: 1.2s</span><div class="fid">SHA-256: d82e4f01ca…e381 · Extracted via Rule Engine v3.8</div>
+<div style="margin-top:8px"><div style="font-size:11px;color:var(--mutfg);letter-spacing:.06em">IDENTIFIED ACTORS & SUBSYSTEMS (4)</div>
+<span class="actor">Guest User · Actor</span><span class="actor">Registered Customer · Actor</span><span class="actor">Payment Gateway (Stripe/PayPal) · External API</span><span class="actor">Inventory ERP Service · Internal Svc</span></div></div>
+<div class="grid4" style="margin-top:12px">
+<div class="metric"><div class="n">24</div><div class="l">Requirements</div><div style="font-size:12px;color:var(--mutfg)">18 Func, 6 Non-Func</div></div>
+<div class="metric"><div class="n">14</div><div class="l">Business Rules</div><div style="font-size:12px;color:var(--mutfg)">9 Constraints</div></div>
+<div class="metric"><div class="n">8</div><div class="l">Edge Cases</div><div style="font-size:12px;color:var(--mutfg)">5 Exceptions</div></div>
+<div class="metric"><div class="n">3</div><div class="l">Open Questions</div><div style="font-size:12px;color:var(--mutfg)">Needs PM Review</div></div></div>
+<table style="margin-top:12px"><thead><tr><th>ID</th><th>Type</th><th>Logic Specification & Scope</th><th>Source Actor</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td><code>REQ-001</code></td><td>REQ</td><td><b>One-click checkout authentication for saved payment methods.</b><br><span style="color:var(--mutfg)">Trigger biometric or stored vault token without re-entering CVV if last verification &lt; 24h.</span></td><td>Registered Customer</td><td><span class="chip chip-bad">P0 Blocker</span></td></tr>
+<tr><td><code>REQ-002</code></td><td>REQ</td><td><b>Guest checkout must enforce phone number SMS verification OTP.</b><br><span style="color:var(--mutfg)">Delivery address validation requires SMS handshake before credit card authorization.</span></td><td>Guest User</td><td><span class="chip" style="background:#FFFBEB;color:#92400E;border-color:#FDE68A">P1 High</span></td></tr>
+<tr><td><code>BR-001</code></td><td>RULE</td><td><b>Cart inventory reservation lock timeout set to exactly 15 minutes.</b><br><span style="color:var(--mutfg)">Upon checkout init, decrement available stock with lock TTL of 900s. Release on cart abort.</span></td><td>Inventory ERP</td><td><span class="chip chip-bad">P0 Blocker</span></td></tr>
+<tr><td><code>BR-002</code></td><td>RULE</td><td><b>Split-tender transactions disallowed if promotional voucher applied.</b><br><span style="color:var(--mutfg)">Orders consuming coupons with “VOUCH_STACKABLE=FALSE”.</span></td><td>Payment Gateway</td><td><span class="chip">P2 Medium</span></td></tr>
+</tbody></table>
+</section></div>
+</body></html>

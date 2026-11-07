@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>QA-Turbo — Queue (Concept C)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--blue2:#3B82F6;--green:#059669;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--mut:#F1F5FD;--mutfg:#475569;--bd:#E4ECFC;--red:#DC2626;--mono:'Fira Code',monospace;--sans:'Fira Sans',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--fg);line-height:1.5}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}button{font:inherit;cursor:pointer}
+.bar{height:56px;background:#fff;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:0 20px}
+.wrap{max-width:1180px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 360px;gap:16px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--bd);border-radius:12px}
+.card h2{font-size:16px;margin:0;padding:14px 16px;border-bottom:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:12px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mutfg)}code{font-family:var(--mono);font-size:13px;background:var(--mut);padding:1px 6px;border-radius:6px}
+.pill{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--bd)}
+.pill-ok{background:#ECFDF5;color:#047857;border-color:#A7F3D0}.pill-bad{background:#FEF2F2;color:#B91C1C;border-color:#FECACA}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:0;border-radius:8px;font-weight:600}
+.btn-p{background:var(--blue);color:#fff}.btn-o{background:#fff;border:1px solid var(--bd)}
+.pad{padding:16px}.note{font-size:13px;color:var(--mutfg)}
+.drawer{position:sticky;top:20px}
+</style></head>
+<body><header class="bar"><b>QA-Turbo</b><span class="note">BRD queue</span><button class="btn btn-p" style="margin-left:auto">Upload BRD</button></header>
+<div class="wrap">
+<section class="card"><h2>Documents</h2>
+<table><thead><tr><th>Document</th><th>ID</th><th>Status</th><th>Rules</th></tr></thead>
+<tbody>
+<tr><td><b>shop-brd.md</b><br><span class="note">42 KB · today</span></td><td><code>brd_1E8A</code></td><td><span class="pill pill-ok">analyzed</span></td><td>6 REQ · 4 BR</td></tr>
+<tr><td><b>payment-brd.txt</b><br><span class="note">18 KB · today</span></td><td><code>brd_1E8B</code></td><td><span class="pill pill-bad">failed</span></td><td>0</td></tr>
+<tr><td><b>booking-brd.md</b><br><span class="note">7 KB</span></td><td><code>brd_1E8C</code></td><td><span class="pill">draft</span></td><td>—</td></tr>
+</tbody></table></section>
+<aside class="card drawer" aria-labelledby="d"><h2 id="d">Detail · <code>brd_1E8A</code></h2><div class="pad">
+<dl><dt class="note">Actors</dt><dd style="margin:0 0 8px">Admin, Shopper</dd>
+<dt class="note">Open questions</dt><dd style="margin:0 0 12px">Guest checkout allowed?</dd></dl>
+<button class="btn btn-p" style="width:100%">Send to Test Writer →</button>
+<p class="note" style="margin-top:12px">Auditor will reject the spec if any REQ has no test.</p></div></aside>
+</div></body></html>

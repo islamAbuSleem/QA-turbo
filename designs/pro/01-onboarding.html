@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>QA-Turbo — Onboarding · Create Project + Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--green:#059669;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--mut:#F1F5FD;--mutfg:#475569;--bd:#E4ECFC;--red:#DC2626;--amber:#D97706;--mono:'Fira Code',monospace;--sans:'Fira Sans',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--fg);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}button{font:inherit;cursor:pointer}:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top{height:56px;background:#fff;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:0 20px}
+.top .logo{background:var(--blue);color:#fff;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:15px}
+.top .proj{color:var(--mutfg);font-size:13px;margin-left:auto}
+.page{min-height:calc(100vh - 56px);display:grid;place-items:center;padding:32px 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:28px;max-width:480px;width:100%}
+@media(max-width:640px){.card{padding:20px}}
+.steps{display:flex;gap:8px;margin-bottom:20px}
+.steps .on,.steps .off{flex:1;border-radius:8px;border:1px solid var(--bd);padding:8px;text-align:center;font-size:13px;color:var(--mutfg)}
+.steps .on{background:#EFF6FF;border-color:var(--blue);color:var(--fg)}
+h1{font-size:26px;line-height:1.2;margin:0 0 8px;letter-spacing:-.02em}
+.lede{color:var(--mutfg);margin:0 0 8px;max-width:65ch}
+label{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
+input{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font:inherit;background:#fff}
+input[aria-invalid="true"]{border-color:var(--red)}
+input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.hint,.err,.ok{font-size:13px;margin-top:6px}
+.hint{color:var(--mutfg)} .err{color:var(--red)} .ok{color:#047857}
+.meter{height:4px;background:var(--bd);border-radius:999px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--amber);transition:width .25s ease}
+.meter.good i{background:var(--green)} .meter.bad i{background:var(--red)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;border-radius:8px;font-weight:600;width:100%}
+.btn-p{background:var(--blue);color:#fff;margin-top:20px}.btn-p:hover{background:#1D4ED8}
+.btn-o{background:#fff;border:1px solid var(--bd);margin-top:10px;color:var(--fg)}
+.footer{font-size:13px;color:var(--mutfg);text-align:center;margin-top:16px}
+::selection{background:#BFDBFE}
+</style></head><body>
+<header class="top"><span class="logo">Q</span><b>QA-Turbo</b><span class="proj">New workspace</span></header>
+<main class="page"><section class="card" aria-labelledby="t">
+<div class="steps" aria-label="Onboarding progress"><span class="on"><b>Step 1 of 2</b><br>Create Project + Admin</span><span class="off"><b>Step 2</b><br>Invite Team</span></div>
+<h1 id="t">Create your project</h1>
+<p class="lede">You'll be the admin. Later you can add analysts, testers and viewers who sign in with their own passwords.</p>
+<form id="f" novalidate>
+<label for="proj">Project name</label>
+<input id="proj" name="proj" autocomplete="organization" value="Checkout Core" aria-describedby="proj-hint">
+<div id="proj-hint" class="hint">Shown in the header. You can rename later.</div>
+<label for="email">Admin email</label>
+<input id="email" name="email" type="email" autocomplete="email" value="admin@qa-turbo.local" aria-describedby="email-err">
+<div id="email-err" class="err" hidden>Enter a valid email, e.g. admin@company.com</div>
+<label for="pw">Admin password</label>
+<input id="pw" name="pw" type="password" autocomplete="new-password" value="••••••••" minlength="8" aria-describedby="pw-hint pw-err">
+<div id="pw-hint" class="hint">At least 8 characters.</div><div class="meter" aria-hidden="true"><i style="width:35%"></i></div>
+<div id="pw-err" class="err" hidden>Password must be at least 8 characters.</div>
+<label for="pw2">Confirm password</label>
+<input id="pw2" name="pw2" type="password" autocomplete="new-password" value="••••••••" aria-describedby="pw2-err">
+<div id="pw2-err" class="err" hidden>Passwords must match.</div>
+<div class="ok" hidden>Ready — admin created. Next you'll invite your team.</div>
+<button class="btn btn-p" type="submit">Create Project & Admin →</button>
+<button class="btn btn-o" type="button">I already have an account → Login</button>
+</form>
+<p class="footer">Empty state: no project exists yet. After this step you go to BRD Upload (Stage 1).</p>
+</section></main>
+<script>
+const f=document.getElementById('f');
+f.addEventListener('submit',e=>{e.preventDefault();
+const email=document.getElementById('email'),pw=document.getElementById('pw'),pw2=document.getElementById('pw2');
+const eErr=document.getElementById('email-err'),pErr=document.getElementById('pw-err'),p2Err=document.getElementById('pw2-err');
+[eErr,pErr,p2Err].forEach(x=>x.hidden=true);[email,pw,pw2].forEach(x=>x.removeAttribute('aria-invalid'));
+let ok=true;
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){eErr.hidden=false;email.setAttribute('aria-invalid','true');ok=false;}
+if(pw.value.length<8){pErr.hidden=false;pw.setAttribute('aria-invalid','true');ok=false;}
+if(pw.value!==pw2.value){p2Err.hidden=false;pw2.setAttribute('aria-invalid','true');ok=false;}
+if(ok){const okEl=f.querySelector('.ok');okEl.hidden=false;okEl.textContent='Ready — admin created. Next you will invite your team.';}
+});
+</script>
+</body></html>
