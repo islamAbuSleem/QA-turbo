@@ -36,7 +36,7 @@
               </NuxtLink>
             </div>
             <dl class="grid grid-cols-2 sm:grid-cols-3 gap-3 m-0">
-              <div v-for="item in highlights" :key="item.k" class="bg-qt-bg border border-qt-bd rounded-qt-sm p-3">
+              <div v-for="item in highlights" :key="item.k" class="bg-qt-bg border border-qt-bd rounded-qt-sm p-3 transition hover:shadow-lg">
                 <dt class="text-[11px] uppercase tracking-wide text-qt-mutfg m-0">{{ item.k }}</dt>
                 <dd class="text-sm font-semibold text-qt-fg m-0 mt-1">{{ item.v }}</dd>
               </div>
@@ -44,7 +44,7 @@
             <p class="text-xs text-qt-mutfg m-0 mt-3">Phase 1 target: deterministic extraction from BRD to reviewed contract.</p>
           </div>
 
-          <aside class="bg-qt-bg border border-qt-bd rounded-qt p-5" aria-label="Phase 1 example preview">
+          <aside class="bg-qt-bg border border-qt-bd rounded-qt p-5 transition hover:shadow-lg" aria-label="Phase 1 example preview">
             <div class="flex items-center justify-between gap-2 mb-2">
               <h2 class="text-sm font-semibold m-0">Phase 1 — active slice</h2>
               <span class="font-mono text-[11px] font-semibold text-qt-blue bg-white border border-qt-bd rounded px-2 py-0.5">IN BUILD</span>
@@ -73,7 +73,7 @@
 
     <section id="about" class="max-w-[1100px] mx-auto px-5 py-12 md:py-14 scroll-mt-20">
       <div class="grid gap-6 md:grid-cols-[.9fr_1.1fr]">
-        <article class="bg-white border border-qt-bd rounded-qt p-6">
+        <article class="bg-white border border-qt-bd rounded-qt p-6 transition hover:shadow-lg">
           <p class="font-mono text-[11px] font-semibold text-qt-blue m-0 mb-2">WHO WE ARE</p>
           <h2 class="text-2xl font-semibold m-0 mb-3 tracking-tight">QA testing platform, built by doing</h2>
           <p class="text-qt-mutfg m-0 leading-relaxed">
@@ -81,7 +81,7 @@
             it myself — every station is a real system I design, code, and verify, so I learn by doing.
           </p>
         </article>
-        <article class="bg-white border border-qt-bd rounded-qt p-6">
+        <article class="bg-white border border-qt-bd rounded-qt p-6 transition hover:shadow-lg">
           <p class="font-mono text-[11px] font-semibold text-qt-blue m-0 mb-2">WHAT WE’RE DOING</p>
           <h2 class="text-2xl font-semibold m-0 mb-3 tracking-tight">Building a traceable 6-station pipeline</h2>
           <p class="text-qt-mutfg m-0 leading-relaxed">
@@ -99,7 +99,7 @@
         <h2 class="text-2xl font-semibold m-0 mb-2 tracking-tight">How it works</h2>
         <p class="text-qt-mutfg m-0 mb-6 max-w-[65ch]">Simple intake now, strict contracts later — built to scale into the full pipeline.</p>
         <ol class="grid gap-3 md:grid-cols-3 m-0 p-0 list-none">
-          <li v-for="step in steps" :key="step.n" class="border border-qt-bd rounded-qt p-4 bg-qt-bg">
+          <li v-for="step in steps" :key="step.n" class="border border-qt-bd rounded-qt p-4 bg-qt-bg transition hover:shadow-lg">
             <span class="font-mono text-xs font-semibold text-white bg-qt-blue rounded px-1.5 py-0.5">{{ step.n }}</span>
             <h3 class="text-base font-semibold m-0 mt-2 mb-1">{{ step.title }}</h3>
             <p class="text-sm text-qt-mutfg m-0 leading-relaxed">{{ step.desc }}</p>
@@ -120,7 +120,7 @@
         <article
           v-for="s in stations"
           :key="s.n"
-          class="bg-white border border-qt-bd rounded-qt p-4 flex flex-col"
+          class="bg-white border border-qt-bd rounded-qt p-4 flex flex-col transition hover:shadow-lg"
           :class="s.phase === 1 ? 'ring-1 ring-qt-blue/20' : ''"
         >
           <div class="flex items-center justify-between gap-2 mb-2">
