@@ -14,7 +14,7 @@
       <nav class="ml-auto flex items-center gap-1 sm:gap-2 text-sm" aria-label="Primary">
         <a href="#pipeline" class="hidden md:inline text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">Pipeline</a>
         <a href="#how" class="hidden md:inline text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">How it works</a>
-        <a href="#philosophy" class="hidden lg:inline text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">Philosophy</a>
+        <a href="#about" class="hidden lg:inline text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">About</a>
         <NuxtLink to="/dashboard" class="hidden sm:inline text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">App</NuxtLink>
         <NuxtLink to="/login" class="text-qt-mutfg hover:text-qt-fg no-underline hover:no-underline px-2 py-1">Sign in</NuxtLink>
         <NuxtLink

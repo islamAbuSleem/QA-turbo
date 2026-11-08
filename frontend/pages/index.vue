@@ -71,7 +71,7 @@
       </div>
     </section>
 
-    <section id="philosophy" class="max-w-[1100px] mx-auto px-5 py-12 md:py-14 scroll-mt-20">
+    <section id="about" class="max-w-[1100px] mx-auto px-5 py-12 md:py-14 scroll-mt-20">
       <div class="grid gap-6 md:grid-cols-[.9fr_1.1fr]">
         <article class="bg-white border border-qt-bd rounded-qt p-6">
           <p class="font-mono text-[11px] font-semibold text-qt-blue m-0 mb-2">WHO WE ARE</p>
