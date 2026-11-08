@@ -7,26 +7,19 @@
         </p>
         <div class="grid gap-10 md:grid-cols-[1.15fr_.85fr] items-start">
           <LandingHero />
-          <PhaseOnePanel />
+          <LandingPhaseOnePanel />
         </div>
       </div>
     </section>
 
-    <AboutSection />
-    <HowItWorks />
-    <PipelineSection />
-    <CtaSection />
+    <LandingAboutSection />
+    <LandingHowItWorks />
+    <LandingPipelineSection />
+    <LandingCtaSection />
   </div>
 </template>
 
 <script setup lang="ts">
-import LandingHero from '~/components/landing/LandingHero.vue'
-import PhaseOnePanel from '~/components/landing/PhaseOnePanel.vue'
-import AboutSection from '~/components/landing/AboutSection.vue'
-import HowItWorks from '~/components/landing/HowItWorks.vue'
-import PipelineSection from '~/components/landing/PipelineSection.vue'
-import CtaSection from '~/components/landing/CtaSection.vue'
-
 definePageMeta({ layout: 'landing' })
 
 useHead({

@@ -1,7 +1,7 @@
 <template>
   <section id="about" class="max-w-[1100px] mx-auto px-5 py-12 md:py-14 scroll-mt-20">
     <div class="grid gap-6 md:grid-cols-[.9fr_1.1fr]">
-      <AboutCard
+      <LandingAboutCard
         v-for="card in cards"
         :key="card.eyebrow"
         :eyebrow="card.eyebrow"
@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import AboutCard from '~/components/landing/AboutCard.vue'
 import type { AboutCardData } from '~/components/landing/types/AboutCardData'
 
 const cards: AboutCardData[] = [
