@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QA-Turbo — Landing (Robust, Concept H)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--blue:#2563EB;--blue2:#1D4ED8;--green:#059669;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--mut:#F1F5FD;--mutfg:#475569;--bd:#E4ECFC;--mono:'Fira Code',monospace;--sans:'Fira Sans',system-ui,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--fg);line-height:1.5}
+    a{color:inherit}:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+    .skip{position:absolute;left:-999px;top:8px;background:#fff;border:1px solid var(--bd);padding:8px 12px;border-radius:8px}
+    .skip:focus{left:12px;z-index:20}
+    .top{position:sticky;top:0;z-index:10;height:56px;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:0 20px}
+    .logo{background:var(--blue);color:#fff;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:15px}
+    .nav{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:14px}
+    .nav a{text-decoration:none;color:var(--mutfg);padding:6px 8px;border-radius:8px}.nav a:hover{color:var(--fg)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer}
+    .btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2)}
+    .btn-o{background:#fff;border-color:var(--bd);color:var(--fg)}.btn-o:hover{background:var(--bg)}
+    .btn-g{background:transparent;color:var(--mutfg)}.btn-g:hover{color:var(--fg)}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .hero{background:#fff;border-bottom:1px solid var(--bd);padding:56px 0 48px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:start}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.nav .hide{display:none}}
+    .kicker{display:inline-flex;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--mut);border:1px solid var(--bd);border-radius:999px;padding:4px 10px;margin-bottom:14px}
+    h1{font-size:clamp(32px,5vw,48px);line-height:1.1;letter-spacing:-.02em;margin:0 0 14px;max-width:20ch}
+    .lede{font-size:18px;color:var(--mutfg);margin:0 0 22px;max-width:62ch}
+    .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .stat{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:10px}
+    .stat dt{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mutfg);margin:0}
+    .stat dd{margin:4px 0 0;font-weight:600;font-size:14px}
+    .panel{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:18px}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+    .panel h2{font-size:14px;margin:0}
+    .badge{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--blue);background:#fff;border:1px solid var(--bd);border-radius:6px;padding:2px 8px}
+    .panel p{font-size:14px;color:var(--mutfg);margin:0 0 12px}
+    .list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .list li{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid var(--bd);border-radius:8px;padding:8px 10px;font-size:14px}
+    .list code{font-family:var(--mono);font-size:12px;color:var(--blue)}
+    section{padding:52px 0}.alt{background:#fff;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:800px){.two{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+    .card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:22px}
+    .ey{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--blue);margin:0 0 8px}
+    .card h2{font-size:24px;line-height:1.2;margin:0 0 10px;letter-spacing:-.01em}
+    .card p{color:var(--mutfg);margin:0}
+    h2.sec{font-size:28px;margin:0 0 8px;letter-spacing:-.01em}.sub{color:var(--mutfg);margin:0 0 20px;max-width:65ch}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:800px){.steps{grid-template-columns:1fr}}
+    .step{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:16px}
+    .step .n{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--blue);border-radius:6px;padding:2px 7px}
+    .step h3{font-size:16px;margin:10px 0 4px}.step p{font-size:14px;color:var(--mutfg);margin:0}
+    .pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:900px){.pipe{grid-template-columns:1fr 1fr}}@media(max-width:560px){.pipe{grid-template-columns:1fr}}
+    .st{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px;display:flex;flex-direction:column}
+    .st.p1{box-shadow:inset 0 0 0 1px rgba(37,99,235,.18)}
+    .st-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}
+    .st-id{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--blue);background:var(--mut);border:1px solid var(--bd);border-radius:6px;padding:1px 6px}
+    .st h3{font-size:14px;margin:0;display:inline}
+    .tag{font-family:var(--mono);font-size:10px;font-weight:600;border:1px solid var(--bd);border-radius:6px;padding:2px 6px;color:var(--mutfg);background:#fff;white-space:nowrap}
+    .tag.on{color:var(--blue);background:var(--mut)}
+    .st p{font-size:14px;color:var(--mutfg);margin:0}
+    .st .out{font-family:var(--mono);font-size:12px;color:rgba(15,23,42,.75);margin-top:10px;padding-top:10px;border-top:1px solid var(--bd)}
+    .cta-band{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    footer{border-top:1px solid var(--bd);background:#fff;padding:20px 0;color:var(--mutfg);font-size:14px}
+    footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .mono{font-family:var(--mono);font-size:12px}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--fg)" aria-label="QA-Turbo home">
+      <span class="logo" aria-hidden="true">Q</span><b>QA-Turbo</b>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="hide" href="#pipeline">Pipeline</a>
+      <a class="hide" href="/dashboard">App</a>
+      <a href="/login">Sign in</a>
+      <a class="btn btn-p" href="/onboarding" style="min-height:36px;padding:0 14px">Get started</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">Multi-system QA testing platform</p>
+          <h1>Turn BRDs into structured, testable quality.</h1>
+          <p class="lede"><b style="color:var(--fg)">QA-Turbo</b> is an assembly-line QA testing platform. Each station does one job — from requirement analysis to verified fixes — so quality stays traceable, not guesswork. I’m building and testing it myself, so I learn by doing.</p>
+          <div class="ctas">
+            <a class="btn btn-p" href="/onboarding">Create project</a>
+            <a class="btn btn-o" href="/login">Sign in</a>
+            <a class="btn btn-g" href="/dashboard">Open app →</a>
+          </div>
+          <dl class="stats">
+            <div class="stat"><dt>Phase 1</dt><dd>BRD → analysis</dd></div>
+            <div class="stat"><dt>Pipeline</dt><dd>6 stations</dd></div>
+            <div class="stat"><dt>Principle</dt><dd>Traceable output</dd></div>
+          </dl>
+        </div>
+        <aside class="panel" aria-label="Phase 1 status">
+          <div class="panel-head"><h2>Phase 1 — active slice</h2><span class="badge">IN BUILD</span></div>
+          <p>Upload a BRD and produce a structured analysis contract that downstream stations can trust.</p>
+          <ul class="list">
+            <li><code>→</code> Actors and stakeholders</li>
+            <li><code>→</code> Requirements (<code>REQ-*</code>)</li>
+            <li><code>→</code> Business rules (<code>BR-*</code>)</li>
+            <li><code>→</code> Edge cases (<code>EC-*</code>)</li>
+            <li><code>→</code> Open questions</li>
+          </ul>
+          <p style="font-size:12px;margin-top:12px">Next stations are planned — built one ticket at a time.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap two">
+        <article class="card">
+          <p class="ey">WHO WE ARE</p>
+          <h2>QA testing platform, built by doing</h2>
+          <p>QA-Turbo is a QA testing platform that turns requirements into verified quality. I’m building and testing it myself — every station is a real system I design, code, and verify, so I learn by doing.</p>
+        </article>
+        <article class="card">
+          <p class="ey">WHAT WE’RE DOING</p>
+          <h2>Building a traceable 6-station pipeline</h2>
+          <p>We turn requirements into quality artifacts through a clear chain: <code style="font-family:var(--mono);font-size:.92em;background:var(--mut);border:1px solid var(--bd);border-radius:6px;padding:1px 4px">BRD → spec → tests → audit → run → bugs → verify</code>. Phase 1 starts at the source: produce structured actors, requirements, rules, edge cases, and open questions so every later step can link back to evidence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="wrap">
+        <h2 class="sec">How it works</h2>
+        <p class="sub">Simple intake now, strict contracts later — designed to scale into the full pipeline.</p>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><h3>Upload a BRD</h3><p>Bring in a Business Requirements Document as the source of truth for the project.</p></div>
+          <div class="step"><span class="n">02</span><h3>Generate the contract</h3><p>Extract a structured spec — rules, actors, requirements, edge cases, and gaps.</p></div>
+          <div class="step"><span class="n">03</span><h3>Feed the pipeline</h3><p>Use the contract to drive tests, audits, execution, bug reports, and verification.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pipeline">
+      <div class="wrap">
+        <h2 class="sec">The pipeline</h2>
+        <p class="sub">Six stations, one traceable chain. Vision — delivered incrementally.</p>
+        <div class="pipe">
+          <article class="st p1"><div class="st-head"><div><span class="st-id">01</span> <h3>BA Agent</h3></div><span class="tag on">PHASE 1</span></div><p>Analyzes the BRD and produces a structured, reviewable specification.</p><p class="out">Output: spec.json contract</p></article>
+          <article class="st"><div class="st-head"><div><span class="st-id">02</span> <h3>Test Writer</h3></div><span class="tag">PLANNED</span></div><p>Generates test cases mapped to requirements and business rules.</p><p class="out">Output: traceable test cases</p></article>
+          <article class="st"><div class="st-head"><div><span class="st-id">03</span> <h3>Auditor</h3></div><span class="tag">PLANNED</span></div><p>Checks coverage and flags weak, missing, or unsupported tests.</p><p class="out">Output: coverage/audit report</p></article>
+          <article class="st"><div class="st-head"><div><span class="st-id">04</span> <h3>Runner</h3></div><span class="tag">PLANNED</span></div><p>Executes tests in isolation and captures evidence and reports.</p><p class="out">Output: run artifacts</p></article>
+          <article class="st"><div class="st-head"><div><span class="st-id">05</span> <h3>Bug Opener</h3></div><span class="tag">PLANNED</span></div><p>Creates clear, deduplicated bug reports from real failures.</p><p class="out">Output: bug records</p></article>
+          <article class="st"><div class="st-head"><div><span class="st-id">06</span> <h3>Verifier</h3></div><span class="tag">PLANNED</span></div><p>Retests fixes and decides FIXED vs REOPENED with regression memory.</p><p class="out">Output: verification status</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="wrap cta-band">
+        <div>
+          <h2 class="sec" style="margin-bottom:6px">Start with Phase 1</h2>
+          <p class="sub" style="margin:0">Create a workspace, upload a BRD, and shape the analysis contract — built step by step.</p>
+        </div>
+        <div class="ctas" style="margin:0">
+          <a class="btn btn-p" href="/onboarding">Get started</a>
+          <a class="btn btn-o" href="/login">Sign in</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin:0">QA-Turbo — QA testing platform. NestJS + Nuxt.</p>
+      <p class="mono" style="margin:0">Phase 1: BRD → structured analysis · Concept H (robust landing)</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -14,7 +14,7 @@
     </header>
     <aside class="side">
       <h3>INTAKE &amp; PARSING</h3>
-      <a class="on" href="#">BRD Intake &amp; Rules</a>
+      <NuxtLink class="on" to="/dashboard">BRD Intake &amp; Rules</NuxtLink>
       <a href="#">Requirement Matrix</a>
       <h3>PIPELINE STAGES</h3>
       <a href="#">Test Writer</a>
