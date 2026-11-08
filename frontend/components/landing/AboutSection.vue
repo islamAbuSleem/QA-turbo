@@ -17,15 +17,7 @@
 
 <script setup lang="ts">
 import AboutCard from '~/components/landing/AboutCard.vue'
-
-interface AboutCardData {
-  eyebrow: string
-  title: string
-  text?: string
-  textBefore?: string
-  chain?: string
-  textAfter?: string
-}
+import type { AboutCardData } from '~/components/landing/types/AboutCardData'
 
 const cards: AboutCardData[] = [
   {

@@ -10,6 +10,8 @@
 </template>
 
 <script setup lang="ts">
+// Props mirror ~/components/landing/types/AboutCardData.ts.
+// Kept inline: Vite's Vue plugin cannot resolve imported types for defineProps in dev.
 defineProps<{
   eyebrow: string
   title: string
