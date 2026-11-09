@@ -11,8 +11,8 @@ Structure: **Milestone** (one ticket) = **one folder**. Todo now → fill later;
   - Todo: `Ticket 0.7/0.7b/0.8` — Auth: offline E/F/G → Stitch live 3 screens → pro `designs/pro/`. Done. Pending merge/adoption.
 
 - [ ] **Milestone 2 — Auth backend + BRD upload (adopted D, Pro source)**
-  - Todo: `Ticket 1A — Layouts`: `layouts/app.vue` + `auth.vue`, `pages/index.vue`, `login.vue`, `onboarding.vue` — Done, green. `users.vue` pending owner.
-  - Todo: `Ticket 1 — BRD upload`: `POST /brd/upload` (multipart, validation, storage OPEN) + Nuxt upload + list (using adopted design). Verify: upload MD/TXT (PDF/DOCX OPEN) and list uploads.
+  - Todo: `Ticket 1A — Layouts`: `layouts/app.vue` + `auth.vue` + `landing.vue`, `pages/index.vue` (landing, split into `components/landing/*`), `login.vue`, `onboarding.vue`, `dashboard.vue` — Done, green on `feat/qa-turbo-landing`.
+  - Todo: `Ticket 1 — BRD upload`: `POST /brd/upload` (multipart, validation, storage OPEN) + Nuxt upload + list (using adopted design). Verify: upload MD/TXT (PDF/DOCX OPEN) and list uploads. authService/auth module per progress-tracker ordering — see note.
 
 - [ ] **Milestone 3 — Business analysis**
   - Todo: `Ticket 2 — Business analysis contract`: `GET /brd/:id/analysis` returns placeholder `spec.json` (actors/rules/edge cases). No LLM yet.
@@ -26,3 +26,5 @@ Structure: **Milestone** (one ticket) = **one folder**. Todo now → fill later;
 Out of scope for Phase 1: runners, Playwright, payments, production hosting.
 
 **Dependency rule:** `Ticket 1` waits for concept adoption (`D / A / B / C / mix`) — update `progress-tracker.md` immediately when locked.
+
+**Ticket numbering note:** `progress-tracker.md` numbers the auth backend as Ticket 1 (with BRD upload as Ticket 2); this file orders BRD upload first. Ordering within Milestone 2 is interchangeable — decide at plan review; keep both files consistent when locking.
