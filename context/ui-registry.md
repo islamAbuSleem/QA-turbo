@@ -2,6 +2,18 @@
 
 Logged components live under `frontend/`. Tie-in rules: `context/ui-rules.md`, tokens: `context/ui-tokens.md`.
 
+## Dashboard (feature: dashboard) — pages/dashboard.vue composes only
+Source: `designs/stitch-stage1-export/code.html` (Stitch export, adopted).
+| Component | Role |
+|---|---|
+| `components/dashboard/PipelineStepper.vue` | 6-station strip (ACTIVE/QUEUED/PENDING/STANDBY) + run chip |
+| `components/dashboard/IntakePane.vue` | Drop zone + filter tabs + file list (v-for) |
+| `components/dashboard/FileCard.vue` | Single intake file row (status pill, progress, error) |
+| `components/dashboard/AnalysisPane.vue` | Inspector header, metric grid, actors, analysis table (v-for) |
+| `components/dashboard/MetricCard.vue` | One count card (Requirements/Rules/Edge/Open Questions) |
+| `components/dashboard/AnalysisRow.vue` | One analysis table row (REQ/BR + priority pill) |
+| `components/dashboard/types/*.ts` | `PipelineStation`, `IntakeFile`, `PipelineMetric`, `AnalysisEntry` |
+
 ## Landing (feature: landing) — pages/index.vue composes only
 | Component | Role |
 |---|---|
