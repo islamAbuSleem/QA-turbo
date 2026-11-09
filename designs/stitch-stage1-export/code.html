@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#f2f3ff","on-primary-fixed":"#002114","secondary-fixed-dim":"#b4c5ff","inverse-on-surface":"#eef0ff","surface-variant":"#dae2fd","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","background":"#faf8ff","on-primary-fixed-variant":"#005137","surface-container-highest":"#dae2fd","on-secondary-fixed":"#00174b","surface-bright":"#faf8ff","surface-container-high":"#e2e7ff","primary-fixed":"#85f8c4","surface":"#faf8ff","outline":"#6d7a72","inverse-surface":"#283044","on-secondary-container":"#fefcff","on-tertiary":"#ffffff","inverse-primary":"#68dba9","secondary":"#0051d5","tertiary-fixed-dim":"#ffb77d","error-container":"#ffdad6","primary":"#006948","primary-fixed-dim":"#68dba9","on-primary":"#ffffff","on-tertiary-fixed-variant":"#6e3900","on-error":"#ffffff","tertiary-container":"#b15f00","outline-variant":"#bccac0","on-error-container":"#93000a","surface-tint":"#006c4a","secondary-fixed":"#dbe1ff","tertiary-fixed":"#ffdcc3","surface-dim":"#d2d9f4","on-surface":"#131b2e","on-tertiary-fixed":"#2f1500","on-surface-variant":"#3d4a42","secondary-container":"#316bf3","primary-container":"#00855d","on-primary-container":"#f5fff7","on-secondary-fixed-variant":"#003ea8","on-background":"#131b2e","surface-container":"#eaedff","on-secondary":"#ffffff","tertiary":"#8d4b00","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter-desktop":"1.5rem","space-md":"0.75rem","space-2xl":"2rem","space-lg":"1rem","space-xl":"1.5rem","margin":"1rem","gutter":"1rem","space-xs":"0.25rem","space-sm":"0.5rem","margin-desktop":"2rem"},fontFamily:{"body-sm":["JetBrains Mono"],"headline-md":["Space Grotesk"],"label-md":["JetBrains Mono"],"body-lg":["JetBrains Mono"],"headline-lg":["Space Grotesk"],"body-md":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"headline-xl-mobile":["Space Grotesk"],"headline-xl":["Space Grotesk"]},fontSize:{"body-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-60 bg-surface-container-lowest border-r border-surface-container-high z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-14 px-space-lg flex items-center border-b border-surface-container-high"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 bg-secondary flex items-center justify-center text-on-secondary font-headline-md text-headline-md leading-none">Q</div><span class="font-headline-md text-headline-md text-on-surface tracking-tight">QA-Turbo</span></div></div><div class="p-space-md flex flex-col gap-space-xl"><div class="flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider"><span>INTAKE &amp; PARSING</span><span class="bg-surface-container-high text-on-surface-variant px-space-xs py-0">3</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a aria-current="page" class="flex items-center justify-between px-space-sm py-space-xs transition-colors bg-secondary text-on-secondary font-label-md" data-path="brd-intake" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">description</span><span>BRD Intake</span></div><span class="w-1.5 h-1.5 bg-primary"></span></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="version-comparison" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">difference</span><span>Version Comparison</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="requirement-matrix" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">grid_view</span><span>Requirement Matrix</span></div></a></nav></div><div class="flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider"><span>PIPELINE STAGES</span><span class="bg-surface-container-high text-on-surface-variant px-space-xs py-0">6</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="pipeline-overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">linear_scale</span><span>BA Agent &amp; Chain</span></div><span class="font-label-sm text-label-sm text-primary">READY</span></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="test-writer" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">edit_note</span><span>Test Writer</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="execution-matrix" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">play_circle</span><span>Execution Matrix</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="extraction-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">terminal</span><span>Extraction Logs</span></div></a></nav></div><div class="flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider"><span>WORKSPACE ADMIN</span><span class="bg-surface-container-high text-on-surface-variant px-space-xs py-0">2</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="team-and-access" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">group</span><span>Team &amp; Access</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[16px]">tune</span><span>Settings</span></div></a></nav></div></div></div><div class="p-space-md border-t border-surface-container-high bg-surface-container-low"><div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><span class="uppercase tracking-wider">TELEMETRY GATE</span><span class="text-primary font-bold">PASSING</span></div><div class="mt-space-xs w-full bg-surface-container-high h-1"><div class="bg-primary h-1 w-[94%]"></div></div></div></aside><div class="pl-60"><header class="fixed top-0 left-60 right-0 h-14 bg-surface-container-lowest border-b border-surface-container-high z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low border border-surface-container-high px-space-sm py-space-xs cursor-pointer hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">terminal</span><span class="font-label-md text-label-md text-on-surface font-semibold">Checkout Core</span><span class="bg-surface-container-highest px-space-xs text-on-surface font-label-sm text-label-sm">v2.4</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="flex items-center gap-space-xs px-space-sm py-space-xs border border-primary bg-primary-container/10"><span class="w-1.5 h-1.5 bg-primary"></span><span class="font-label-sm text-label-sm text-primary font-bold tracking-wider uppercase">OPERATE MODE</span></div></div><div class="flex items-center gap-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[16px]">search</span><input class="w-72 bg-surface border border-surface-container-high pl-8 pr-space-sm py-space-xs font-label-sm text-label-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-secondary" placeholder="Filter artifacts, tests or commits..." type="text"/><span class="absolute right-space-sm bg-surface-container-high px-space-xs font-label-sm text-label-sm text-on-surface-variant">⌘K</span></div><div class="flex items-center gap-space-md border-l border-surface-container-high pl-space-md"><div class="relative flex items-center gap-space-sm cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm font-semibold text-on-surface">AD</span><span class="w-1.5 h-1.5 bg-primary rounded-full"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Admin</span></div></div></div></div></header><main class="relative pt-14 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Pipeline Progress Station Strip -->
+<div class="w-full bg-surface-container-lowest border-b border-surface-container-high px-space-lg py-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-sm">
+<span class="text-on-surface font-semibold tracking-wider uppercase">AUTONOMOUS VERIFICATION PIPELINE</span>
+<span class="bg-surface-container-high text-on-surface px-space-xs py-0.5 rounded-[4px] font-mono">SPEC_RUN: checkout_core_2.4</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>ACTIVE PIPELINE</span>
+<span class="text-on-surface font-mono">STATION 1 OF 6</span>
+</div>
+</div>
+<!-- 6-Station Stepper Indicator -->
+<div class="grid grid-cols-2 md:grid-cols-6 gap-2 pt-1 pb-1">
+<!-- Station 1 (Active) -->
+<div class="flex items-center gap-2 p-2 bg-secondary text-on-secondary rounded-[8px] border border-secondary transition-all">
+<div class="w-5 h-5 rounded-[4px] bg-on-secondary text-secondary flex items-center justify-center font-label-sm font-bold text-[10px]">1</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-bold truncate">BA Agent (BRD)</span>
+<span class="font-label-sm text-[9px] uppercase tracking-wider opacity-90 truncate">ACTIVE EXECUTION</span>
+</div>
+</div>
+<!-- Station 2 -->
+<div class="flex items-center gap-2 p-2 bg-surface-container-low text-on-surface-variant rounded-[8px] border border-surface-container-high opacity-75">
+<div class="w-5 h-5 rounded-[4px] bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[10px]">2</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-semibold truncate">Test Writer</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider truncate">Queued</span>
+</div>
+</div>
+<!-- Station 3 -->
+<div class="flex items-center gap-2 p-2 bg-surface-container-low text-on-surface-variant rounded-[8px] border border-surface-container-high opacity-75">
+<div class="w-5 h-5 rounded-[4px] bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[10px]">3</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-semibold truncate">Auditor</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider truncate">Pending AST</span>
+</div>
+</div>
+<!-- Station 4 -->
+<div class="flex items-center gap-2 p-2 bg-surface-container-low text-on-surface-variant rounded-[8px] border border-surface-container-high opacity-75">
+<div class="w-5 h-5 rounded-[4px] bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[10px]">4</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-semibold truncate">Runner</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider truncate">Standby</span>
+</div>
+</div>
+<!-- Station 5 -->
+<div class="flex items-center gap-2 p-2 bg-surface-container-low text-on-surface-variant rounded-[8px] border border-surface-container-high opacity-75">
+<div class="w-5 h-5 rounded-[4px] bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[10px]">5</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-semibold truncate">Bug Opener</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider truncate">Standby</span>
+</div>
+</div>
+<!-- Station 6 -->
+<div class="flex items-center gap-2 p-2 bg-surface-container-low text-on-surface-variant rounded-[8px] border border-surface-container-high opacity-75">
+<div class="w-5 h-5 rounded-[4px] bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-[10px]">6</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[11px] leading-tight font-semibold truncate">Verifier</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider truncate">Telemetry Gate</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Workspace Content Split: 340px Left / Fluid Right -->
+<div class="flex flex-col lg:flex-row w-full flex-1">
+<!-- LEFT COLUMN: INTAKE & INGESTION QUEUE (340px fixed) -->
+<div class="w-full lg:w-[340px] flex-shrink-0 bg-surface-container-lowest border-r border-surface-container-high flex flex-col p-space-md gap-space-md">
+<!-- Upload Zone -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wider">DOCUMENT INTAKE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">AST PARSER v4.1</span>
+</div>
+<div class="border-2 border-dashed border-secondary bg-surface-container-low rounded-[12px] p-space-md flex flex-col items-center justify-center text-center gap-space-xs cursor-pointer hover:bg-surface-container transition-colors group" id="drop-zone">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary group-hover:scale-105 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-headline-md text-[13px] text-on-surface font-semibold">Drag &amp; Drop BRD Document</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">.md, .txt, .docx, .pdf up to 10MB</span>
+</div>
+<button class="mt-2 min-h-[44px] px-space-md bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-secondary rounded-[8px] font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 transition-all w-full" type="button">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+            Browse Local Files
+          </button>
+</div>
+</div>
+<!-- Ingested Documents Header & Filter Chips -->
+<div class="flex flex-col gap-2 pt-2 border-t border-surface-container-high">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wider">Ingested Documents (4)</span>
+<span class="font-label-sm text-label-sm text-primary font-mono font-semibold">1 ACTIVE</span>
+</div>
+<!-- Filter tabs -->
+<div class="grid grid-cols-4 gap-1 p-0.5 bg-surface-container-low rounded-[8px] border border-surface-container-high text-center font-label-sm text-[10px]">
+<button class="file-filter-btn py-1 px-1 bg-surface-container-lowest text-on-surface font-bold rounded-[6px] shadow-sm transition-all" data-filter="all">All (4)</button>
+<button class="file-filter-btn py-1 px-1 text-on-surface-variant hover:text-on-surface rounded-[6px] transition-all" data-filter="analyzed">Ready</button>
+<button class="file-filter-btn py-1 px-1 text-on-surface-variant hover:text-on-surface rounded-[6px] transition-all" data-filter="progress">Parsing</button>
+<button class="file-filter-btn py-1 px-1 text-on-surface-variant hover:text-on-surface rounded-[6px] transition-all" data-filter="error">Errors</button>
+</div>
+</div>
+<!-- File List Rows -->
+<div class="flex flex-col gap-2 overflow-y-auto max-h-[calc(100vh-420px)] pr-0.5">
+<!-- Row 1 (ACTIVE / SELECTED) -->
+<div class="file-card selected-file-card p-space-sm rounded-[12px] bg-surface-container-lowest border-2 border-secondary cursor-pointer transition-all flex flex-col gap-2 relative shadow-sm" data-file-id="brd_1E8A">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0">article</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-[13px] font-bold text-on-surface truncate">checkout_v2.4_final_spec.md</span>
+<div class="flex items-center gap-1.5 font-label-sm text-[10px] text-on-surface-variant">
+<span class="font-mono bg-surface-container-high px-1 py-0.2 rounded-[4px]">brd_1E8A</span>
+<span>•</span>
+<span>428 KB</span>
+</div>
+</div>
+</div>
+<!-- Status Badge: Analyzed -->
+<span class="px-2 py-0.5 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] rounded-[4px] font-label-sm text-[10px] font-bold tracking-wide flex-shrink-0">
+              ANALYZED
+            </span>
+</div>
+<!-- Progress Bar 100% -->
+<div class="w-full bg-[#ECFDF5] rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#059669] h-1.5 rounded-full w-full"></div>
+</div>
+<div class="flex items-center justify-between text-label-sm text-[10px] text-on-surface-variant font-mono">
+<span>24 REQS PARSED</span>
+<span>2025-05-18 14:22:04 UTC</span>
+</div>
+</div>
+<!-- Row 2: Payment Fallback (Streaming / Parsing) -->
+<div class="file-card p-space-sm rounded-[12px] bg-surface-container-low border border-surface-container-high hover:border-secondary cursor-pointer transition-all flex flex-col gap-2" data-file-id="brd_9F2B">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 animate-spin">sync</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-[13px] font-semibold text-on-surface truncate">payment_gateway_fallback_v1.md</span>
+<div class="flex items-center gap-1.5 font-label-sm text-[10px] text-on-surface-variant">
+<span class="font-mono bg-surface-container-high px-1 py-0.2 rounded-[4px]">brd_9F2B</span>
+<span>•</span>
+<span>1.2 MB</span>
+</div>
+</div>
+</div>
+<!-- Status Badge: Streaming -->
+<span class="px-2 py-0.5 bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] rounded-[4px] font-label-sm text-[10px] font-bold tracking-wide flex items-center gap-1 flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-ping"></span>
+              STREAMING
+            </span>
+</div>
+<!-- Progress Bar 64% with caption -->
+<div class="flex flex-col gap-1">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#2563EB] h-1.5 rounded-full w-[64%]"></div>
+</div>
+<span class="font-body-sm text-[10px] text-secondary truncate font-mono">Parsing section 4.2: 3D-Secure timeout...</span>
+</div>
+<div class="flex items-center justify-between text-label-sm text-[10px] text-on-surface-variant font-mono">
+<span>64% TOKEN STREAM</span>
+<span>Just now</span>
+</div>
+</div>
+<!-- Row 3: Tax Engine (Draft / Unprocessed) -->
+<div class="file-card p-space-sm rounded-[12px] bg-surface-container-lowest border border-surface-container-high hover:border-surface-container-highest cursor-pointer transition-all flex flex-col gap-2" data-file-id="brd_3A04">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">description</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-[13px] font-medium text-on-surface truncate">tax_engine_integration_draft.txt</span>
+<div class="flex items-center gap-1.5 font-label-sm text-[10px] text-on-surface-variant">
+<span class="font-mono bg-surface-container-high px-1 py-0.2 rounded-[4px]">brd_3A04</span>
+<span>•</span>
+<span>84 KB</span>
+</div>
+</div>
+</div>
+<span class="px-2 py-0.5 bg-[#F1F5FD] border border-[#E4ECFC] text-[#475569] rounded-[4px] font-label-sm text-[10px] font-bold tracking-wide flex-shrink-0">
+              DRAFT
+            </span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-outline-variant h-1.5 rounded-full w-0"></div>
+</div>
+<div class="flex items-center justify-between text-label-sm text-[10px] text-on-surface-variant font-mono">
+<span>UNINDEXED</span>
+<span>2 hours ago</span>
+</div>
+</div>
+<!-- Row 4: Legacy Auth (Parse Error State) -->
+<div class="file-card p-space-sm rounded-[12px] bg-[#FEF2F2] border border-[#FECACA] hover:border-[#DC2626] cursor-pointer transition-all flex flex-col gap-2" data-file-id="brd_ERROR_09">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[#DC2626] text-[20px] flex-shrink-0">error</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-[13px] font-bold text-[#991B1B] truncate">legacy_auth_migration_raw.pdf</span>
+<div class="flex items-center gap-1.5 font-label-sm text-[10px] text-[#991B1B]">
+<span class="font-mono bg-[#FEE2E2] px-1 py-0.2 rounded-[4px]">brd_ERROR_09</span>
+<span>•</span>
+<span>8.4 MB</span>
+</div>
+</div>
+</div>
+<span class="px-2 py-0.5 bg-[#FEF2F2] border border-[#FECACA] text-[#DC2626] rounded-[4px] font-label-sm text-[10px] font-bold tracking-wide flex-shrink-0">
+              PARSE ERROR
+            </span>
+</div>
+<!-- Inline Error Message -->
+<div class="p-1.5 bg-surface-container-lowest rounded-[6px] border border-[#FECACA] text-[11px] text-[#991B1B] font-mono leading-tight flex items-start gap-1">
+<span class="material-symbols-outlined text-[14px] flex-shrink-0 mt-0.5">report_problem</span>
+<span>Invalid AST syntax in Section 2.1 table schemas</span>
+</div>
+<div class="flex items-center justify-between text-label-sm text-[10px] text-[#991B1B] font-mono">
+<span>AST HALTED</span>
+<span>10 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Quick Interactive View State Switcher for Verification -->
+<div class="mt-auto pt-space-sm border-t border-surface-container-high flex flex-col gap-1.5">
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">VIEW SIMULATOR TABS:</span>
+<div class="grid grid-cols-2 gap-1.5 font-label-sm text-[10px]">
+<button class="min-h-[44px] px-2 py-1 bg-secondary text-on-secondary rounded-[8px] font-semibold text-center hover:bg-[#1D4ED8] transition-all flex items-center justify-center gap-1" id="view-tab-analyzed" onclick="switchState('analyzed')">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+            Analyzed View
+          </button>
+<button class="min-h-[44px] px-2 py-1 bg-surface-container-low border border-surface-container-high text-on-surface rounded-[8px] font-medium text-center hover:bg-surface-container transition-all flex items-center justify-center gap-1" id="view-tab-streaming" onclick="switchState('streaming')">
+<span class="material-symbols-outlined text-[14px]">stream</span>
+            Streaming AST
+          </button>
+<button class="min-h-[44px] px-2 py-1 bg-surface-container-low border border-surface-container-high text-on-surface rounded-[8px] font-medium text-center hover:bg-surface-container transition-all flex items-center justify-center gap-1" id="view-tab-error" onclick="switchState('error')">
+<span class="material-symbols-outlined text-[14px]">bug_report</span>
+            Error AST State
+          </button>
+<button class="min-h-[44px] px-2 py-1 bg-surface-container-low border border-surface-container-high text-on-surface rounded-[8px] font-medium text-center hover:bg-surface-container transition-all flex items-center justify-center gap-1" id="view-tab-empty" onclick="switchState('empty')">
+<span class="material-symbols-outlined text-[14px]">folder_off</span>
+            Empty State
+          </button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: SELECTED FILE INSPECTOR & STRUCTURED ANALYSIS MATRIX -->
+<div class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- STATE 1: ANALYZED FILE VIEW (Default visible) -->
+<div class="flex flex-col w-full flex-1" id="state-analyzed">
+<!-- Header Bar -->
+<div class="p-space-lg bg-surface-container-lowest border-b border-surface-container-high flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1.5 min-w-0">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">terminal</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight truncate">checkout_v2.4_final_spec.md</h1>
+<span class="font-mono text-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded-[4px] font-bold">brd_1E8A</span>
+<span class="font-mono text-label-sm text-on-surface-variant">428 KB</span>
+</div>
+<!-- Diagnostics Chips -->
+<div class="flex flex-wrap items-center gap-2 pt-0.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] rounded-[4px] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                98.4% Confidence
+              </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-surface-container-low border border-surface-container-high text-on-surface-variant rounded-[4px] font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+                Parsing Time: 1.2s
+              </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-surface-container-low border border-surface-container-high text-on-surface-variant rounded-[4px] font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+                Station: BA Agent v4.1 (LLM-CoT AST)
+              </span>
+</div>
+</div>
+<!-- Action Buttons (Min 44px) -->
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="min-h-[44px] px-space-md bg-surface-container-lowest border border-surface-container-high hover:border-secondary hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-semibold rounded-[8px] flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 transition-all" id="btn-export-json" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+              Export JSON/Markdown
+            </button>
+<button class="min-h-[44px] px-space-md bg-[#2563EB] hover:bg-[#1D4ED8] active:bg-[#1E40AF] text-white font-label-md text-label-md font-bold rounded-[8px] flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 transition-all" id="btn-send-test-writer" type="button">
+<span>Send to Test Writer</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Four Summary Diagnostic Cards -->
+<div class="p-space-lg grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Requirements -->
+<div class="p-space-md bg-surface-container-lowest border border-surface-container-high rounded-[12px] flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">REQUIREMENTS</span>
+<span class="w-8 h-8 rounded-[8px] bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">checklist</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface">24</span>
+<span class="font-label-sm text-[11px] text-primary font-mono font-semibold">+100% Extracted</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">18 Functional, 6 Non-Functional</span>
+</div>
+<!-- Card 2: Business Rules -->
+<div class="p-space-md bg-surface-container-lowest border border-surface-container-high rounded-[12px] flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">BUSINESS RULES</span>
+<span class="w-8 h-8 rounded-[8px] bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface">14</span>
+<span class="font-label-sm text-[11px] text-secondary font-mono font-semibold">Deterministic</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 Strict Invariants, 10 State Rules</span>
+</div>
+<!-- Card 3: Edge Cases -->
+<div class="p-space-md bg-surface-container-lowest border border-surface-container-high rounded-[12px] flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">EDGE CASES IDENTIFIED</span>
+<span class="w-8 h-8 rounded-[8px] bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface">8</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant font-mono">Boundaries</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 Network latency, 5 Boundary conditions</span>
+</div>
+<!-- Card 4: Ambiguities -->
+<div class="p-space-md bg-surface-container-lowest border border-surface-container-high rounded-[12px] flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">OPEN AMBIGUITIES</span>
+<span class="w-8 h-8 rounded-[8px] bg-[#FFFBEB] text-[#D97706] flex items-center justify-center border border-[#FDE68A]">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl font-bold text-[#D97706]">3</span>
+<span class="px-1.5 py-0.5 bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] text-[10px] rounded-[4px] font-mono font-bold">ATTENTION</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Requires BA/PM synchronous clarification</span>
+</div>
+</div>
+<!-- Search, Filter Bar and Granular Pills -->
+<div class="px-space-lg flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-sm">
+<!-- Search Input with Ctrl+K -->
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full min-h-[44px] bg-surface-container-lowest border border-surface-container-high pl-10 pr-20 py-2 rounded-[8px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 transition-all" id="matrix-search" placeholder="Filter requirements, IDs, or actors..." type="text"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 bg-surface-container-high px-1.5 py-0.5 rounded-[4px] font-mono text-[10px] text-on-surface-variant uppercase">Ctrl+K</span>
+</div>
+<!-- Filter Pills -->
+<div class="flex flex-wrap items-center gap-1.5">
+<button class="filter-type-pill min-h-[44px] px-3 py-1 bg-secondary text-on-secondary font-label-md text-label-md font-semibold rounded-[8px] transition-all" data-type="all">All Types (24)</button>
+<button class="filter-type-pill min-h-[44px] px-3 py-1 bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md text-label-md font-medium rounded-[8px] transition-all" data-type="functional">Functional (18)</button>
+<button class="filter-type-pill min-h-[44px] px-3 py-1 bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md text-label-md font-medium rounded-[8px] transition-all" data-type="edge">Edge Cases (8)</button>
+<button class="filter-type-pill min-h-[44px] px-3 py-1 bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md text-label-md font-medium rounded-[8px] transition-all" data-type="p0">P0 Blocker (5)</button>
+<button class="filter-type-pill min-h-[44px] px-3 py-1 bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md text-label-md font-medium rounded-[8px] transition-all" data-type="p1">P1 High (11)</button>
+</div>
+</div>
+<!-- Structured Analysis Table Container -->
+<div class="p-space-lg flex-1">
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-[12px] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-surface-container-high text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider">
+<th class="py-3 px-4 font-bold w-24">ID</th>
+<th class="py-3 px-4 font-bold w-36">Type</th>
+<th class="py-3 px-4 font-bold">Logic &amp; Scope Specification</th>
+<th class="py-3 px-4 font-bold w-40">Actor / Domain</th>
+<th class="py-3 px-4 font-bold w-32">Priority</th>
+<th class="py-3 px-4 font-bold w-48 text-right">Target Station</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high font-body-md text-body-md text-on-surface" id="matrix-tbody">
+<!-- Row 1: REQ-001 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="inspectRow('REQ-001')">
+<td class="py-3.5 px-4 font-mono font-bold text-secondary">REQ-001</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 bg-surface-container text-on-surface rounded-[4px] font-label-sm text-[10px] font-medium border border-surface-container-high">
+                        Functional Rule
+                      </span>
+</td>
+<td class="py-3.5 px-4 font-body-md leading-relaxed text-on-surface">
+                      When customer cart total exceeds <span class="font-mono text-secondary font-semibold">$250.00</span> and currency is <span class="font-mono text-on-surface font-semibold">USD</span>, apply dynamic tiered courier discount (<span class="font-mono font-semibold">-15%</span>) before sales tax computation.
+                    </td>
+<td class="py-3.5 px-4 font-mono text-[12px] text-on-surface-variant">Checkout Engine</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FEF2F2] border border-[#FECACA] text-[#991B1B] rounded-[4px] font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span>
+                        P0 Blocker
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="inline-block font-mono text-[11px] bg-surface-container-low px-2 py-1 rounded-[6px] text-secondary font-semibold border border-surface-container-high">
+                        Station 2: Test Writer
+                      </span>
+</td>
+</tr>
+<!-- Row 2: REQ-002 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="inspectRow('REQ-002')">
+<td class="py-3.5 px-4 font-mono font-bold text-secondary">REQ-002</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 bg-surface-container text-on-surface rounded-[4px] font-label-sm text-[10px] font-medium border border-surface-container-high">
+                        State Transition
+                      </span>
+</td>
+<td class="py-3.5 px-4 font-body-md leading-relaxed text-on-surface">
+                      If 3D-Secure 2.0 challenge fails twice, degrade to secondary SMS OTP verification within <span class="font-mono text-secondary font-semibold">45s</span> without resetting cart session.
+                    </td>
+<td class="py-3.5 px-4 font-mono text-[12px] text-on-surface-variant">Payment Gateway</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FEF2F2] border border-[#FECACA] text-[#991B1B] rounded-[4px] font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span>
+                        P0 Blocker
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="inline-block font-mono text-[11px] bg-surface-container-low px-2 py-1 rounded-[6px] text-secondary font-semibold border border-surface-container-high">
+                        Station 2: Test Writer
+                      </span>
+</td>
+</tr>
+<!-- Row 3: REQ-003 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="inspectRow('REQ-003')">
+<td class="py-3.5 px-4 font-mono font-bold text-secondary">REQ-003</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] rounded-[4px] font-label-sm text-[10px] font-semibold">
+                        Edge Case
+                      </span>
+</td>
+<td class="py-3.5 px-4 font-body-md leading-relaxed text-on-surface">
+                      Concurrent multi-tab checkout: when inventory falls to 0 while user is on payment screen, lock order button and display toast <code class="font-mono text-[11px] bg-surface-container-high px-1 py-0.5 rounded text-error">ERR_STOCK_EXHAUSTED</code>.
+                    </td>
+<td class="py-3.5 px-4 font-mono text-[12px] text-on-surface-variant">Inventory Service</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] rounded-[4px] font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D97706]"></span>
+                        P1 High
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="inline-block font-mono text-[11px] bg-surface-container-low px-2 py-1 rounded-[6px] text-on-surface font-medium border border-surface-container-high">
+                        Station 3: Auditor
+                      </span>
+</td>
+</tr>
+<!-- Row 4: REQ-004 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="inspectRow('REQ-004')">
+<td class="py-3.5 px-4 font-mono font-bold text-secondary">REQ-004</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 bg-surface-container text-on-surface rounded-[4px] font-label-sm text-[10px] font-medium border border-surface-container-high">
+                        Data Invariant
+                      </span>
+</td>
+<td class="py-3.5 px-4 font-body-md leading-relaxed text-on-surface">
+                      All monetary calculations must enforce IEEE 754 decimal rounding to exactly 2 fractional digits; reject floating-point approximations at payload boundary.
+                    </td>
+<td class="py-3.5 px-4 font-mono text-[12px] text-on-surface-variant">Tax Engine</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] rounded-[4px] font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D97706]"></span>
+                        P1 High
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="inline-block font-mono text-[11px] bg-surface-container-low px-2 py-1 rounded-[6px] text-secondary font-semibold border border-surface-container-high">
+                        Station 2: Test Writer
+                      </span>
+</td>
+</tr>
+<!-- Row 5: REQ-005 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="inspectRow('REQ-005')">
+<td class="py-3.5 px-4 font-mono font-bold text-secondary">REQ-005</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] rounded-[4px] font-label-sm text-[10px] font-bold">
+                        Ambiguity / Q
+                      </span>
+</td>
+<td class="py-3.5 px-4 font-body-md leading-relaxed text-on-surface">
+<div class="flex items-center gap-1.5 text-error font-medium">
+<span class="material-symbols-outlined text-[16px] text-[#D97706]">warning</span>
+                        Section 5.3: BRD specifies guest checkout retry count is 3, but security policy section 2 specifies 2 attempts max. Needs clarification.
+                      </div>
+</td>
+<td class="py-3.5 px-4 font-mono text-[12px] text-on-surface-variant">Security / BA</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-container-highest text-secondary border border-surface-container-high rounded-[4px] font-label-sm text-[10px] font-semibold">
+                        P2 Medium
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="inline-block font-mono text-[11px] bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] px-2 py-1 rounded-[6px] font-bold">
+                        Needs BA Review
+                      </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination / Status Bar -->
+<div class="px-space-md py-space-sm bg-surface-container-low border-t border-surface-container-high flex flex-col sm:flex-row items-center justify-between text-label-sm text-label-sm text-on-surface-variant font-mono gap-2">
+<div class="flex items-center gap-2">
+<span>SHOWING 5 OF 24 AST EXTRACTED NODES</span>
+<span>•</span>
+<span class="text-primary font-bold">SHA256: 7f8a9...b401</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container-high rounded-[4px] text-on-surface font-semibold hover:border-secondary">First</button>
+<button class="px-2 py-1 bg-secondary text-on-secondary rounded-[4px] font-bold">1</button>
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container-high rounded-[4px] text-on-surface hover:border-secondary">2</button>
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container-high rounded-[4px] text-on-surface hover:border-secondary">3</button>
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container-high rounded-[4px] text-on-surface hover:border-secondary">Last</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STATE 2: STREAMING / UPLOADING AST STATE (Interactive View) -->
+<div class="hidden flex-col w-full flex-1 p-space-lg gap-space-lg" id="state-streaming">
+<div class="flex items-center justify-between bg-surface-container-lowest border border-surface-container-high p-space-md rounded-[12px]">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px] animate-spin">refresh</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Streaming AST Extraction &amp; LLM Parsing</h2>
+<span class="font-mono text-label-sm text-on-surface-variant">Document: payment_gateway_fallback_v1.md (1.2 MB) • Chunk 14/22</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-mono text-label-md text-secondary font-bold">64.2% Complete</span>
+<button class="min-h-[44px] px-space-md bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md rounded-[8px]" onclick="switchState('analyzed')">
+              Back to Spec
+            </button>
+</div>
+</div>
+<!-- Terminal Log Viewer -->
+<div class="bg-[#0F172A] rounded-[12px] p-space-md font-mono text-body-sm text-[#A7F3D0] flex flex-col gap-2 shadow-sm border border-[#1E293B]">
+<div class="flex items-center justify-between border-b border-[#334155] pb-2 text-label-sm text-[#94A3B8]">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#EF4444]"></span>
+<span class="w-3 h-3 rounded-full bg-[#F59E0B]"></span>
+<span class="w-3 h-3 rounded-full bg-[#10B981]"></span>
+<span class="ml-2 font-bold text-white">qa-turbo-ba-worker --trace-ast --stream</span>
+</div>
+<span>Tokens: 4,892 / s</span>
+</div>
+<div class="flex flex-col gap-1 text-[12px] leading-relaxed pt-2">
+<div class="text-[#94A3B8]">[14:26:01.002] &gt;&gt; Initializing token splitter (chunk_size=1024, overlap=128)</div>
+<div class="text-[#94A3B8]">[14:26:01.218] &gt;&gt; Document AST root generated. Found 12 header branches.</div>
+<div class="text-[#A7F3D0]">[14:26:01.590] [OK] Extracted Requirement [PAY-001]: "Stripe primary gateway circuit breaker at 500ms p99"</div>
+<div class="text-[#A7F3D0]">[14:26:01.812] [OK] Extracted Requirement [PAY-002]: "Adyen fallback routing on HTTP 503 or 429 rate limit"</div>
+<div class="text-[#FDE68A]">[14:26:02.104] [AMBIGUITY_DETECTED] &gt;&gt; Chunk 8: Missing fallback reconciliation TTL in spec! Flagging BA alert.</div>
+<div class="text-[#60A5FA] flex items-center gap-2">
+<span class="animate-pulse">▶</span>
+<span>[14:26:02.441] &gt;&gt; Ingesting Chunk 14: Section 4.2 3D-Secure timeout fallbacks...</span>
+</div>
+</div>
+</div>
+</div>
+<!-- STATE 3: PARSE ERROR & REMEDIATION STATE -->
+<div class="hidden flex-col w-full flex-1 p-space-lg gap-space-lg" id="state-error">
+<div class="bg-[#FEF2F2] border border-[#FECACA] rounded-[12px] p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-[8px] bg-[#FEE2E2] text-[#DC2626] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">error</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-[#991B1B] font-bold">Parser Execution Halted: AST Grammar Violation</h2>
+<span class="font-mono text-label-sm text-[#991B1B]">Document: legacy_auth_migration_raw.pdf (brd_ERROR_09) • Line 142: Col 18</span>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-[#FEE2E2] border border-[#FECACA] text-[#DC2626] rounded-[4px] font-mono text-label-sm font-bold">
+              STATUS CODE: ERR_AST_TABLE_SYNTAX
+            </span>
+</div>
+<!-- Code Diff / AST Snippet -->
+<div class="bg-[#0F172A] p-space-md rounded-[8px] font-mono text-[12px] border border-[#FECACA]/30 flex flex-col gap-1">
+<div class="text-[#94A3B8]">140 | | Role | Permissions | Auth Header |</div>
+<div class="text-[#94A3B8]">141 | |------|-------------|-------------|</div>
+<div class="text-[#FECACA] bg-[#7F1D1D]/50 px-1 py-0.5 rounded">142 | | Admin | read:*, write:* | Bearer &lt;missing token token delimiter&gt;</div>
+<div class="text-[#EF4444] font-bold">    |                  ^--- Error: Unescaped delimiter inside column specification</div>
+<div class="text-[#94A3B8]">143 | | Guest | read:public | None |</div>
+</div>
+<!-- Suggested Remediations -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-2 border-t border-[#FECACA]">
+<div class="flex items-center gap-2 text-label-sm text-[#991B1B]">
+<span class="material-symbols-outlined text-[18px]">auto_fix_high</span>
+<span>Autonomous remediation available via Fuzzy Schema Fixer (Confidence: 94.2%)</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="min-h-[44px] px-space-md bg-surface-container-lowest border border-surface-container-high hover:border-secondary text-on-surface font-label-md rounded-[8px]" onclick="switchState('analyzed')">
+                Dismiss
+              </button>
+<button class="min-h-[44px] px-space-md bg-[#DC2626] hover:bg-[#B91C1C] text-white font-label-md font-bold rounded-[8px] flex items-center gap-2" onclick="alert('Triggered Fuzzy LLM AST Auto-Remediation on brd_ERROR_09!'); switchState('analyzed');">
+<span class="material-symbols-outlined text-[16px]">build</span>
+                Re-parse with Fallback LLM
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- STATE 4: ZERO-DATA EMPTY STATE -->
+<div class="hidden flex-col items-center justify-center w-full flex-1 p-space-2xl text-center gap-space-md" id="state-empty">
+<div class="w-16 h-16 rounded-[12px] bg-surface-container-low border border-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[36px]">dataset</span>
+</div>
+<div class="flex flex-col gap-1 max-w-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">No Ingested BRD Selected</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Select a business requirements document from the intake queue on the left or upload a fresh specification to trigger Stage 1 AST extraction.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm pt-2">
+<button class="min-h-[44px] px-space-md bg-secondary text-on-secondary font-label-md font-semibold rounded-[8px] flex items-center gap-2" onclick="document.getElementById('drop-zone').scrollIntoView({behavior:'smooth'})">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+            Upload Specification
+          </button>
+<button class="min-h-[44px] px-space-md bg-surface-container-lowest border border-surface-container-high text-on-surface font-label-md rounded-[8px]" onclick="switchState('analyzed')">
+            Load Sample Core Spec
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Inspector Modal / Toast Trigger -->
+<div class="fixed bottom-6 right-6 bg-[#0F172A] text-white p-space-md rounded-[8px] border border-[#334155] shadow-lg hidden flex-col gap-1 z-50 min-w-[320px]" id="inspector-toast">
+<div class="flex items-center justify-between text-label-sm font-mono text-[#94A3B8]">
+<span id="toast-title">INSPECTOR READY</span>
+<button class="text-white hover:text-secondary" onclick="hideToast()"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+<div class="font-body-sm text-[12px] text-white" id="toast-body">Item selected.</div>
+</div>
+</div>
+<script>
+  // State Switching Engine between Analyzed, Streaming, Error, and Empty states
+  function switchState(stateName) {
+    const states = ['analyzed', 'streaming', 'error', 'empty'];
+    states.forEach(s => {
+      const el = document.getElementById('state-' + s);
+      const tabEl = document.getElementById('view-tab-' + s);
+      if (el) {
+        if (s === stateName) {
+          el.classList.remove('hidden');
+          el.classList.add('flex');
+        } else {
+          el.classList.remove('flex');
+          el.classList.add('hidden');
+        }
+      }
+      if (tabEl) {
+        if (s === stateName) {
+          tabEl.classList.remove('bg-surface-container-low', 'text-on-surface', 'font-medium');
+          tabEl.classList.add('bg-secondary', 'text-on-secondary', 'font-semibold');
+        } else {
+          tabEl.classList.remove('bg-secondary', 'text-on-secondary', 'font-semibold');
+          tabEl.classList.add('bg-surface-container-low', 'text-on-surface', 'font-medium');
+        }
+      }
+    });
+
+    showToast("Switched Workspace View", "Displaying workspace state: " + stateName.toUpperCase());
+  }
+
+  // Interactive File Card Click
+  document.querySelectorAll('.file-card').forEach(card => {
+    card.addEventListener('click', function() {
+      document.querySelectorAll('.file-card').forEach(c => {
+        c.classList.remove('border-2', 'border-secondary', 'selected-file-card');
+        c.classList.add('border-surface-container-high');
+      });
+      this.classList.remove('border-surface-container-high');
+      this.classList.add('border-2', 'border-secondary', 'selected-file-card');
+
+      const id = this.getAttribute('data-file-id');
+      if (id === 'brd_1E8A') switchState('analyzed');
+      else if (id === 'brd_9F2B') switchState('streaming');
+      else if (id === 'brd_ERROR_09') switchState('error');
+      else switchState('empty');
+    });
+  });
+
+  // Filter Buttons for Intake Queue
+  document.querySelectorAll('.file-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelectorAll('.file-filter-btn').forEach(b => {
+        b.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-bold', 'shadow-sm');
+        b.classList.add('text-on-surface-variant');
+      });
+      this.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-bold', 'shadow-sm');
+      this.classList.remove('text-on-surface-variant');
+      
+      const filter = this.getAttribute('data-filter');
+      showToast("Filter Applied", "Intake file list filtered by: " + filter.toUpperCase());
+    });
+  });
+
+  // Filter Pills for Structured Analysis Table
+  document.querySelectorAll('.filter-type-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.filter-type-pill').forEach(p => {
+        p.classList.remove('bg-secondary', 'text-on-secondary', 'font-semibold');
+        p.classList.add('bg-surface-container-lowest', 'border', 'border-surface-container-high', 'text-on-surface');
+      });
+      this.classList.add('bg-secondary', 'text-on-secondary', 'font-semibold');
+      this.classList.remove('bg-surface-container-lowest', 'border', 'text-on-surface');
+
+      const type = this.getAttribute('data-type');
+      filterMatrixTable(type);
+    });
+  });
+
+  // Dynamic Table Search
+  const searchInput = document.getElementById('matrix-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      const rows = document.querySelectorAll('#matrix-tbody tr');
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        if (text.includes(q)) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Filter Matrix rows by preset criteria
+  function filterMatrixTable(criteria) {
+    const rows = document.querySelectorAll('#matrix-tbody tr');
+    rows.forEach(r => {
+      if (criteria === 'all') {
+        r.style.display = '';
+      } else if (criteria === 'functional') {
+        r.style.display = r.textContent.includes('Functional') ? '' : 'none';
+      } else if (criteria === 'edge') {
+        r.style.display = r.textContent.includes('Edge Case') ? '' : 'none';
+      } else if (criteria === 'p0') {
+        r.style.display = r.textContent.includes('P0 Blocker') ? '' : 'none';
+      } else if (criteria === 'p1') {
+        r.style.display = r.textContent.includes('P1 High') ? '' : 'none';
+      }
+    });
+    showToast("Matrix Filter", "Active table criteria: " + criteria.toUpperCase());
+  }
+
+  // Row inspection trigger
+  function inspectRow(reqId) {
+    showToast("Requirement Inspected", "Loaded logic inspector for " + reqId + " [Linked Station: Station 2]");
+  }
+
+  // Toast notifications for user interaction feedback
+  function showToast(title, body) {
+    const toast = document.getElementById('inspector-toast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastBody = document.getElementById('toast-body');
+    if (!toast) return;
+    toastTitle.textContent = title;
+    toastBody.textContent = body;
+    toast.classList.remove('hidden');
+    toast.classList.add('flex');
+    setTimeout(() => {
+      hideToast();
+    }, 4000);
+  }
+
+  function hideToast() {
+    const toast = document.getElementById('inspector-toast');
+    if (toast) {
+      toast.classList.remove('flex');
+      toast.classList.add('hidden');
+    }
+  }
+
+  // Action Buttons
+  const exportBtn = document.getElementById('btn-export-json');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      showToast("AST Export Dispatched", "Serialized 24 requirement nodes to JSON & Markdown schema.");
+    });
+  }
+
+  const sendBtn = document.getElementById('btn-send-test-writer');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', () => {
+      showToast("Station 2 Handoff", "Transferring 24 AST items to Station 2: Test Writer...");
+    });
+  }
+</script></main></div></body></html>
