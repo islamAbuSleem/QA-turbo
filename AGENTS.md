@@ -16,6 +16,7 @@ Boot check: Backend `GET /health` returns `200 { "status": "ok" }`. DB (if confi
 
 ## Rules
 - One component / one class per file + named exports (NestJS: one module/controller/service per file; Nuxt: one component per file in `components/`).
+- Nuxt page splits (landing rules for `/project-init` + `/product-build`): pages compose only (`components/<feature>/`), repeatable cards via data + `v-for` with a child card, data interfaces in `components/<feature>/types/` imported with `import type` (child props mirror inline). See `context/code-standards.md` → Landing / page component rules.
 - SOLID, no `any` (use `unknown` + narrowing / DTOs). Validation on every input (`class-validator` + `ValidationPipe` on NestJS, `zod`/validations on Nuxt forms).
 - Auth guard by default on every route except `/health` (when auth is decided — see `context/project-overview.md` OPEN items).
 - `helmet` + `cors` on all NestJS APIs.

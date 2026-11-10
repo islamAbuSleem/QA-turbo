@@ -15,6 +15,10 @@
 - [x] **Owner decision:** Pro as source (Stitch as reference) — layouts scaffolded. DB/Auth/Roles still pending lock.
 - [x] **Ticket 1A — Layouts + demo pages:** `frontend/layouts/app.vue` + `auth.vue`, `pages/index.vue` (app), `pages/login.vue` + `pages/onboarding.vue` (auth via `definePageMeta`). Build green. `users.vue` intentionally left for owner to write.
 - [x] **Ticket 1A.1 — Login design:** `pages/login.vue` redesigned from `designs/pro/02-login.html` (Fira Sans/Code, #2563EB/#F8FAFC, card 440px, alert role, Remember/Forgot, Sign In →). Styles moved to `frontend/assets/css/login.css` (`<style scoped src>`). `<script setup>` only refs + stub submit. Build green.
+- [x] **2026-11-07 — Tailwind locked:** `@nuxtjs/tailwindcss` + `tailwind.config.ts` (`qt` tokens) + minimal `assets/scss/global.scss`. Login cleaned to Tailwind-only. See `ui-tokens.md`.
+- [x] **2026-11-08 — Landing (branch `feat/qa-turbo-landing`):** `layouts/landing.vue` + `pages/index.vue` rebuilt as robust public introduction (who we are = QA testing platform built by doing; 6-station pipeline; Phase 1 panel). Split into `components/landing/*` (7 components, one per file), About driven by `cards: AboutCardData[]` + `v-for`, data interface in `components/landing/types/AboutCardData.ts`. Hover shadow on cards; nav "Philosophy"→"About". Verified via browser-automation (200, 0 console errors). Commits `8ff16e4…7737967`.
+- [x] **2026-11-08 — Landing rules into standards:** `AGENTS.md` + `context/code-standards.md` + `context/ui-rules.md`: pages compose only, feature components dir, no duplication (data + `v-for`), `types/` dir with `import type` (child props mirror inline — Vite can't resolve `defineProps<ImportedType>` in dev). Commit `dd39639`.
+- [x] **2026-11-08 — FE TS fixes:** auto-import names (`Landing*`) over explicit `.vue` imports (TS2307) + added `frontend/tsconfig.json` extending `.nuxt/tsconfig.json` (TS2304 `useHead`). Commits `cc0e73b`, `c25a7ab`. `typescript` added as frontend devDependency.
 - [ ] **Ticket 1 — Auth backend (next):** `POST /auth/register-project` (project+admin), `POST /auth/login`, `GET /auth/me`, `POST /users` (admin-only) + JWT guard. Todo — not started.
 - [ ] **Ticket 2 — BRD upload:** `POST /brd/upload` + Nuxt upload + list (Todo only — not started).
 - [ ] **Ticket 3 — Business analysis stub:** `GET /brd/:id/analysis` → placeholder `spec.json` (Todo).
@@ -33,12 +37,13 @@
 
 ## Next step
 
-1. Owner writes `pages/users.vue` (admin table + create dialog, using app layout) — mentor reviews.
-2. Lock: DB (Postgres Docker?), JWT, roles `admin/analyst/tester/viewer`.
-3. Mentor scaffolds NestJS `auth` + `users` + `projects` modules. Owner writes login guard + hashing logic.
-4. Verify: `cd backend && npm run build`, `cd frontend && npm run build` (green), `GET /health` 200, register → login → create user flow.
+1. Owner reviews/merges `feat/qa-turbo-landing` → `main` (8 commits, verified). No remote configured yet — add origin to push.
+2. Lock OPEN stack (see below) — gates Tickets 2–4.
+3. Owner writes `pages/users.vue` (admin table + create dialog, app layout) — mentor reviews.
+4. Mentor scaffolds NestJS `auth` + `users` + `projects` modules. Owner writes login guard + hashing logic.
+5. Verify: `cd backend && npm run build`, `cd frontend && npm run build` (green), `GET /health` 200, register → login → create user flow.
 
-Last updated: 2026-11-07 — Layouts app/auth + demo pages green, users.vue pending owner.
+Last updated: 2026-11-09 — landing shipped on `feat/qa-turbo-landing` (components split + standards synced), servers FE:3000/BE:3001 green.
 
 ## OPEN decisions (owner to decide together)
 
