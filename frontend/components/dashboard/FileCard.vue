@@ -22,10 +22,7 @@
           </div>
         </div>
       </div>
-      <span
-        class="px-2 py-0.5 rounded-[4px] text-[10px] font-bold tracking-wide shrink-0"
-        :class="pillClass"
-      >{{ file.status }}</span>
+      <QtPill :label="file.status" :tone="statusTone[file.status]" class="shrink-0" />
     </div>
 
     <div class="w-full bg-qt-mut rounded-full h-1.5 overflow-hidden">
@@ -43,16 +40,17 @@
 </template>
 
 <script setup lang="ts">
+import QtPill from '~/components/QtPill.vue'
 import type { IntakeFile } from '~/components/dashboard/types/IntakeFile'
 
 const props = defineProps<{ file: IntakeFile }>()
 
-const pillClass = computed(() => ({
-  ANALYZED: 'bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46]',
-  STREAMING: 'bg-[#EFF6FF] border border-[#BFDBFE] text-qt-blue',
-  DRAFT: 'bg-qt-mut border border-qt-bd text-qt-mutfg',
-  'PARSE ERROR': 'bg-qt-red-bg border border-qt-red-bd text-qt-red',
-}[props.file.status]))
+const statusTone = {
+  ANALYZED: 'success',
+  STREAMING: 'info',
+  DRAFT: 'muted',
+  'PARSE ERROR': 'error',
+} as const
 
 const barClass = computed(() => ({
   ANALYZED: 'bg-qt-green',

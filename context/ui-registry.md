@@ -2,6 +2,13 @@
 
 Logged components live under `frontend/`. Tie-in rules: `context/ui-rules.md`, tokens: `context/ui-tokens.md`.
 
+## Shared components (root `frontend/components/`, `Qt` prefix)
+| Component | Role |
+|---|---|
+| `components/QtDataTable.vue` | Reusable data table: `columns` + `items` props, slot per cell (`cell-<key>` / `header-<key>`), `v-model:sort-by` / `v-model:sort-desc` / `v-model:selected-keys`, events `row-click` / `row-activate` / `sort-change`, props `row-key`, `active-row-key`, `selectable`, `loading`, `empty-text`, `dense` |
+| `components/QtPill.vue` | Status pill (tones: success / info / warning / error / muted / neutral) |
+| `components/types/DataTableColumn.ts` | Column interface for `QtDataTable` consumers (mirrored inline in the component) |
+
 ## Dashboard (feature: dashboard) — pages/dashboard.vue composes only
 Source: `designs/stitch-stage1-export/code.html` (Stitch export, adopted).
 | Component | Role |
@@ -9,9 +16,8 @@ Source: `designs/stitch-stage1-export/code.html` (Stitch export, adopted).
 | `components/dashboard/PipelineStepper.vue` | 6-station strip (ACTIVE/QUEUED/PENDING/STANDBY) + run chip |
 | `components/dashboard/IntakePane.vue` | Drop zone + filter tabs + file list (v-for) |
 | `components/dashboard/FileCard.vue` | Single intake file row (status pill, progress, error) |
-| `components/dashboard/AnalysisPane.vue` | Inspector header, metric grid, actors, analysis table (v-for) |
+| `components/dashboard/AnalysisPane.vue` | Inspector header, metric grid, actors, analysis table (`QtDataTable` + cell slots) |
 | `components/dashboard/MetricCard.vue` | One count card (Requirements/Rules/Edge/Open Questions) |
-| `components/dashboard/AnalysisRow.vue` | One analysis table row (REQ/BR + priority pill) |
 | `components/dashboard/types/*.ts` | `PipelineStation`, `IntakeFile`, `PipelineMetric`, `AnalysisEntry` |
 
 ## Landing (feature: landing) — pages/index.vue composes only

@@ -38,31 +38,50 @@
         </div>
       </div>
 
-      <div class="bg-white border border-qt-bd rounded-qt overflow-x-auto">
-        <table class="w-full text-left border-collapse min-w-[760px]">
-          <thead>
-            <tr class="border-b border-qt-bd">
-              <th class="p-2 text-[10px] uppercase tracking-wider text-qt-mutfg font-semibold">ID</th>
-              <th class="p-2 text-[10px] uppercase tracking-wider text-qt-mutfg font-semibold">Type</th>
-              <th class="p-2 text-[10px] uppercase tracking-wider text-qt-mutfg font-semibold">Logic &amp; Scope</th>
-              <th class="p-2 text-[10px] uppercase tracking-wider text-qt-mutfg font-semibold">Actor</th>
-              <th class="p-2 text-[10px] uppercase tracking-wider text-qt-mutfg font-semibold">Priority</th>
-            </tr>
-          </thead>
-          <tbody>
-            <AnalysisRow v-for="entry in entries" :key="entry.id" :entry="entry" />
-          </tbody>
-        </table>
-      </div>
+      <QtDataTable
+        :columns="columns"
+        :items="entries"
+        row-key="id"
+        :active-row-key="activeRowKey"
+        @row-click="onRowClick"
+        @row-activate="onRowActivate"
+      >
+        <template #cell-id="{ value }">
+          <code class="font-mono text-xs bg-qt-mut px-1.5 py-0.5 rounded whitespace-nowrap">{{ value }}</code>
+        </template>
+        <template #cell-logic="{ item }">
+          <span class="text-xs font-semibold text-qt-fg">{{ item.logic }}</span>
+          <span class="block text-xs text-qt-mutfg mt-0.5">{{ item.detail }}</span>
+        </template>
+        <template #cell-priority="{ item }">
+          <QtPill :label="item.priority" :tone="priorityTone[item.priorityLevel]" />
+        </template>
+      </QtDataTable>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import QtDataTable from '~/components/QtDataTable.vue'
+import QtPill from '~/components/QtPill.vue'
 import MetricCard from '~/components/dashboard/MetricCard.vue'
-import AnalysisRow from '~/components/dashboard/AnalysisRow.vue'
 import type { PipelineMetric } from '~/components/dashboard/types/PipelineMetric'
 import type { AnalysisEntry } from '~/components/dashboard/types/AnalysisEntry'
+import type { DataTableColumn } from '~/components/types/DataTableColumn'
+
+const columns: DataTableColumn[] = [
+  { key: 'id', label: 'ID', width: '110px', sortable: true },
+  { key: 'type', label: 'Type', width: '80px' },
+  { key: 'logic', label: 'Logic & Scope' },
+  { key: 'actor', label: 'Actor', width: '150px', sortable: true },
+  { key: 'priority', label: 'Priority', width: '120px' },
+]
+
+const priorityTone = {
+  P0: 'error',
+  P1: 'warning',
+  P2: 'muted',
+} as const
 
 const metrics: (PipelineMetric & { icon: string })[] = [
   { label: 'Requirements', value: '24', note: '+100% Extracted', icon: '✓' },
@@ -84,4 +103,15 @@ const entries: AnalysisEntry[] = [
   { id: 'BR-001', type: 'RULE', logic: 'Cart inventory lock TTL is exactly 15 minutes.', detail: 'Decrement stock on checkout init; release on cart abort.', actor: 'Inventory ERP', priority: 'P0 Blocker', priorityLevel: 'P0' },
   { id: 'BR-002', type: 'RULE', logic: 'Split-tender disallowed with promotional voucher.', detail: 'Orders consuming coupons with VOUCH_STACKABLE=FALSE.', actor: 'Payment Gateway', priority: 'P2 Medium', priorityLevel: 'P2' },
 ]
+
+const activeRowKey = ref<string | null>(null)
+
+function onRowClick(entry: AnalysisEntry): void {
+  activeRowKey.value = entry.id
+  // TODO: open requirement detail panel — owner wires the drill-down (Ticket 2).
+}
+
+function onRowActivate(entry: AnalysisEntry): void {
+  activeRowKey.value = entry.id
+}
 </script>

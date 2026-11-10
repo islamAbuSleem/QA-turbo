@@ -28,6 +28,8 @@ Applies to NestJS (BE) + Nuxt (FE). `/project-init` and `/product-build` (alias 
    - Example: `AboutSection.vue` holds `cards: AboutCardData[]` and renders `<AboutCard v-for="card in cards" ... />`; the card is `components/landing/AboutCard.vue`.
 3. **Types directory under the feature.** Shared UI data interfaces live in `frontend/components/<feature>/types/<Name>.ts` and are imported with `import type` by the consumers. Component props mirror the interface inline in the child component — Vite's Vue plugin in dev cannot resolve `defineProps<ImportedType>` (needs FS/`compileScript`); the interface file is the single source for data typing, not for runtime props extraction.
    - Example: `components/landing/types/AboutCardData.ts` (`eyebrow`, `title`, `text?`, `textBefore?`, `chain?`, `textAfter?`), imported into `AboutSection.vue` and mirrored in `AboutCard.vue` props.
+4. **Shared UI primitives live at `components/` root (`Qt` prefix).** Reusable building blocks — tables, pills, badges, empty states — are implemented once at the root and consumed by every feature folder. Feature folders must not re-implement them.
+   - Example: `components/QtDataTable.vue` (props: `columns`/`items`/`row-key`/`active-row-key`/`selectable`/`loading`; v-models: `sort-by`/`sort-desc`/`selected-keys`; events: `row-click`/`row-activate`/`sort-change`; slots: `cell-<key>`, `header-<key>`) and `components/QtPill.vue` (tones: success/info/warning/error/muted/neutral). Column interface: `components/types/DataTableColumn.ts`.
 
 ## Commits & branches
 - Branch-per-feature, small commits, research-first (log sources in `library-docs.md`).
