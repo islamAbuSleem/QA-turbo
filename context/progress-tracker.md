@@ -19,6 +19,7 @@
 - [x] **2026-11-08 — Landing (branch `feat/qa-turbo-landing`):** `layouts/landing.vue` + `pages/index.vue` rebuilt as robust public introduction (who we are = QA testing platform built by doing; 6-station pipeline; Phase 1 panel). Split into `components/landing/*` (7 components, one per file), About driven by `cards: AboutCardData[]` + `v-for`, data interface in `components/landing/types/AboutCardData.ts`. Hover shadow on cards; nav "Philosophy"→"About". Verified via browser-automation (200, 0 console errors). Commits `8ff16e4…7737967`.
 - [x] **2026-11-08 — Landing rules into standards:** `AGENTS.md` + `context/code-standards.md` + `context/ui-rules.md`: pages compose only, feature components dir, no duplication (data + `v-for`), `types/` dir with `import type` (child props mirror inline — Vite can't resolve `defineProps<ImportedType>` in dev). Commit `dd39639`.
 - [x] **2026-11-08 — FE TS fixes:** auto-import names (`Landing*`) over explicit `.vue` imports (TS2307) + added `frontend/tsconfig.json` extending `.nuxt/tsconfig.json` (TS2304 `useHead`). Commits `cc0e73b`, `c25a7ab`. `typescript` added as frontend devDependency.
+- [x] **2026-11-09 — Stitch Stage 1 dashboard shipped (branch `feat/qa-turbo-dashboard`):** ran master UI prompt in Stitch (signed in), generated Stage 1 workspace, exported code via .zip → `designs/stitch-stage1-export/`. Ported to `components/dashboard/*` (stepper, intake pane + FileCard, analysis pane + MetricCard/AnalysisRow, 4 type files) using qt tokens/Fira fonts. `pages/dashboard.vue` composes only. Verified browser-automation: 200, 0 console errors, screenshot matches design. Commits `fb5d085`, `af3f821`.
 - [ ] **Ticket 1 — Auth backend (next):** `POST /auth/register-project` (project+admin), `POST /auth/login`, `GET /auth/me`, `POST /users` (admin-only) + JWT guard. Todo — not started.
 - [ ] **Ticket 2 — BRD upload:** `POST /brd/upload` + Nuxt upload + list (Todo only — not started).
 - [ ] **Ticket 3 — Business analysis stub:** `GET /brd/:id/analysis` → placeholder `spec.json` (Todo).
@@ -43,7 +44,7 @@
 4. Mentor scaffolds NestJS `auth` + `users` + `projects` modules. Owner writes login guard + hashing logic.
 5. Verify: `cd backend && npm run build`, `cd frontend && npm run build` (green), `GET /health` 200, register → login → create user flow.
 
-Last updated: 2026-11-09 — landing shipped on `feat/qa-turbo-landing` (components split + standards synced), servers FE:3000/BE:3001 green.
+Last updated: 2026-11-09 — Stitch Stage 1 dashboard ported & verified on `feat/qa-turbo-dashboard`; landing on `feat/qa-turbo-landing`; servers FE:3000/BE:3001 green.
 
 ## OPEN decisions (owner to decide together)
 
