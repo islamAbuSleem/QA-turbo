@@ -2,6 +2,15 @@
 
 Logged components live under `frontend/`. Tie-in rules: `context/ui-rules.md`, tokens: `context/ui-tokens.md`.
 
+## Users (feature: users) — pages/users.vue composes only
+| Component | Role |
+|---|---|
+| `components/users/TeamTable.vue` | Member table on `QtDataTable` (cell slots: name/email/role/status/lastLogin) |
+| `components/users/CreateUserDialog.vue` | Add-member dialog: name, email, role select, auto-generated temp password (+ copy), validation |
+| `components/users/RolesLegend.vue` | Role permission matrix (admin/analyst/tester/viewer) |
+| `components/users/types/TeamUser.ts` | `TeamUser`, `UserRole`, `UserStatus` |
+| `components/users/types/RoleDefinition.ts` | `RoleDefinition` |
+
 ## Shared components (root `frontend/components/`, `Qt` prefix)
 | Component | Role |
 |---|---|
