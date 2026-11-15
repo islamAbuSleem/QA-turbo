@@ -17,6 +17,20 @@
 - **Contracts:** `backend/openapi.json` is the source of truth. FE calls BE via `NUXT_PUBLIC_API_BASE`.
 - **Future split:** Each agent becomes its own NestJS service/process behind a queue (OPEN). Do not split until Phase 1 slice works end-to-end.
 
+## Auth + persistence (Ticket 1, 2026-11-15)
+```
+[Nuxt FE] --POST /auth/login--> [auth module] --TokenService(port)--> [JwtTokenService]
+              |                                   |
+              | cookie qt_session (HttpOnly)      | PasswordHasher(port) -> BcryptPasswordHasher
+              v                                   v
+        [JwtAuthGuard (global)]            [UserRepository(port)] -> InMemoryUserRepository (DB adapter pending lock)
+```
+
+- **Ports first** (`backend/src/common/ports/*`): `UserRepository`, `ProjectRepository`, `PasswordHasher`, `TokenService` — every provider is injected by token, so Postgres + sessions can replace the in-memory/JWT adapters without touching services.
+- **Guard by default:** `JwtAuthGuard` and `RolesGuard` are global (`APP_GUARD`); only `/health`, `/auth/login`, `/auth/register-project` are `@Public()`.
+- **Roles:** `admin | analyst | tester | viewer` (mirrors the FE `/users` page).
+- **Still OPEN (owner to lock):** DB engine, auth transport (cookie+JWT default is the current adapter), BRD storage, LLM provider.
+
 ## Repo layout
 ```
 qa-turbo/

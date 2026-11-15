@@ -1,10 +1,42 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "QA-Turbo API", "version": "0.1.0" },
+  "info": { "title": "QA-Turbo API", "version": "0.2.0" },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "projectId": { "type": "string" },
+          "name": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "role": { "type": "string", "enum": ["admin", "analyst", "tester", "viewer"] },
+          "status": { "type": "string", "enum": ["active", "invited"] },
+          "mustResetPassword": { "type": "boolean" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "lastLoginAt": { "type": ["string", "null"], "format": "date-time" }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "ownerUserId": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "sessionCookie": { "type": "apiKey", "in": "cookie", "name": "qt_session" },
+      "bearer": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
+    }
+  },
   "paths": {
     "/health": {
       "get": {
         "summary": "Health check",
+        "security": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -14,12 +46,128 @@
                   "type": "object",
                   "properties": {
                     "status": { "type": "string" },
-                    "dbConfigured": { "type": "boolean" }
+                    "dbConfigured": { "type": "boolean" },
+                    "storage": { "type": "string" }
                   }
                 }
               }
             }
           }
+        }
+      }
+    },
+    "/auth/register-project": {
+      "post": {
+        "summary": "Create a workspace and its first admin",
+        "security": [],
+        "responses": {
+          "201": {
+            "description": "Workspace created; session cookie set",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "400": { "description": "Validation failed" },
+          "409": { "description": "Email already registered" }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Sign in and receive a session cookie",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Signed in",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "400": { "description": "Validation failed" },
+          "401": { "description": "Invalid email or password" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Clear the session cookie",
+        "responses": { "204": { "description": "Signed out" } }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Current session user",
+        "responses": {
+          "200": {
+            "description": "Current user",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "401": { "description": "Not authenticated" }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "List workspace members",
+        "responses": {
+          "200": {
+            "description": "Members",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/User" } }
+              }
+            }
+          },
+          "401": { "description": "Not authenticated" }
+        }
+      },
+      "post": {
+        "summary": "Invite a member (admin only)",
+        "responses": {
+          "201": {
+            "description": "Member created",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "400": { "description": "Validation failed" },
+          "403": { "description": "Admin role required" },
+          "409": { "description": "Email already registered" }
+        }
+      }
+    },
+    "/users/{id}/role": {
+      "patch": {
+        "summary": "Change a member's role (admin only)",
+        "responses": {
+          "200": {
+            "description": "Role updated",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "400": { "description": "Validation failed" },
+          "403": { "description": "Admin role required" },
+          "404": { "description": "User not found in this workspace" }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "List projects visible to the current user",
+        "responses": {
+          "200": {
+            "description": "Projects",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Project" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "summary": "Get one project",
+        "responses": {
+          "200": {
+            "description": "Project",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Project" } } }
+          },
+          "404": { "description": "Project not found in this workspace" }
         }
       }
     }
