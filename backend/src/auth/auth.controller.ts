@@ -1,18 +1,22 @@
 import { Body, Controller, Get, HttpCode, Post, Res } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
-import { Public } from '../common/decorators/public.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { getSessionCookieName, getSessionTtlMs, isProduction } from '../common/config/auth.config';
 import { AuthenticatedUser } from '../common/domain/authenticated-user';
 import { UserView } from '../common/domain/user.entity';
-import { SESSION_COOKIE_NAME, SESSION_TTL_MS } from '../common/guards/session-cookie';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterProjectDto } from './dto/register-project.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly auth: AuthService) {}
+  constructor(
+    private readonly auth: AuthService,
+    private readonly config: ConfigService,
+  ) {}
 
   @Public()
   @Post('register-project')
@@ -41,7 +45,7 @@ export class AuthController {
   @Post('logout')
   @HttpCode(204)
   logout(@Res({ passthrough: true }) response: Response): void {
-    response.clearCookie(SESSION_COOKIE_NAME);
+    response.clearCookie(this.cookieName, this.cookieOptions);
   }
 
   @Get('me')
@@ -49,13 +53,21 @@ export class AuthController {
     return this.auth.me(user.id);
   }
 
-  private setSessionCookie(response: Response, token: string): void {
-    response.cookie(SESSION_COOKIE_NAME, token, {
+  private get cookieName(): string {
+    return getSessionCookieName(this.config);
+  }
+
+  private get cookieOptions(): { httpOnly: boolean; sameSite: 'lax'; secure: boolean; maxAge: number; path: string } {
+    return {
       httpOnly: true,
       sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: SESSION_TTL_MS,
+      secure: isProduction(this.config),
+      maxAge: getSessionTtlMs(this.config),
       path: '/',
-    });
+    };
+  }
+
+  private setSessionCookie(response: Response, token: string): void {
+    response.cookie(this.cookieName, token, this.cookieOptions);
   }
 }

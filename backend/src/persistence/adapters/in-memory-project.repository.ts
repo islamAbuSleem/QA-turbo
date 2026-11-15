@@ -8,7 +8,9 @@ export class InMemoryProjectRepository implements ProjectRepository {
   private readonly projects = new Map<string, Project>();
   private sequence = 0;
 
-  async create(project: Omit<Project, 'createdAt'> & { createdAt?: string }): Promise<Project> {
+  async create(
+    project: Omit<Project, 'id' | 'createdAt'> & { id?: string; createdAt?: string },
+  ): Promise<Project> {
     this.sequence += 1;
     const created: Project = {
       ...project,

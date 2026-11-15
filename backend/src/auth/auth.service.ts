@@ -1,18 +1,14 @@
 import { ConflictException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 
-import { AuthenticatedUser } from '../common/domain/authenticated-user';
 import { User, UserView, toUserView } from '../common/domain/user.entity';
 import { PASSWORD_HASHER, PasswordHasher } from '../common/ports/password.hasher.port';
 import { PROJECT_REPOSITORY, ProjectRepository } from '../common/ports/project.repository.port';
 import { TOKEN_SERVICE, TokenService } from '../common/ports/token.service.port';
 import { USER_REPOSITORY, UserRepository } from '../common/ports/user.repository.port';
+import { normalizeEmail, normalizeName } from '../common/utils/email.util';
+import { AuthSession } from './auth-session';
 import { LoginDto } from './dto/login.dto';
 import { RegisterProjectDto } from './dto/register-project.dto';
-
-export interface AuthSession {
-  token: string;
-  user: UserView;
-}
 
 @Injectable()
 export class AuthService {
@@ -24,7 +20,8 @@ export class AuthService {
   ) {}
 
   async registerProject(dto: RegisterProjectDto): Promise<AuthSession> {
-    const existing = await this.users.findByEmail(dto.adminEmail);
+    const email = normalizeEmail(dto.adminEmail);
+    const existing = await this.users.findByEmail(email);
     if (existing) {
       throw new ConflictException('An account with that email already exists.');
     }
@@ -32,8 +29,8 @@ export class AuthService {
     const passwordHash = await this.hasher.hash(dto.adminPassword);
     const user = await this.users.create({
       projectId: '',
-      name: dto.adminName,
-      email: dto.adminEmail,
+      name: normalizeName(dto.adminName),
+      email,
       role: 'admin',
       status: 'active',
       passwordHash,
@@ -41,14 +38,18 @@ export class AuthService {
       lastLoginAt: null,
     });
 
-    const project = await this.projects.create({ name: dto.projectName, ownerUserId: user.id });
+    const project = await this.projects.create({
+      name: normalizeName(dto.projectName),
+      ownerUserId: user.id,
+    });
     const withProject = await this.users.update(user.id, { projectId: project.id });
 
     return this.issueSession(withProject ?? user);
   }
 
   async login(dto: LoginDto): Promise<AuthSession> {
-    const user = await this.users.findByEmail(dto.email);
+    const email = normalizeEmail(dto.email);
+    const user = await this.users.findByEmail(email);
     if (!user) {
       throw new UnauthorizedException('Invalid email or password.');
     }

@@ -1,17 +1,19 @@
 import { CanActivate, ExecutionContext, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
+import { getSessionCookieName } from '../config/auth.config';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
 import { AuthenticatedUser } from '../domain/authenticated-user';
 import { TOKEN_SERVICE, TokenService } from '../ports/token.service.port';
-import { SESSION_COOKIE_NAME } from './session-cookie';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     @Inject(TOKEN_SERVICE) private readonly tokens: TokenService,
+    private readonly config: ConfigService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -34,7 +36,7 @@ export class JwtAuthGuard implements CanActivate {
       request.user = {
         id: payload.sub,
         email: payload.email,
-        role: payload.role as AuthenticatedUser['role'],
+        role: payload.role,
         projectId: payload.projectId,
       };
       return true;
@@ -45,7 +47,7 @@ export class JwtAuthGuard implements CanActivate {
 
   private extractToken(request: Request): string | undefined {
     const cookies = request.cookies as Record<string, string> | undefined;
-    const fromCookie = cookies?.[SESSION_COOKIE_NAME];
+    const fromCookie = cookies?.[getSessionCookieName(this.config)];
     if (fromCookie) {
       return fromCookie;
     }

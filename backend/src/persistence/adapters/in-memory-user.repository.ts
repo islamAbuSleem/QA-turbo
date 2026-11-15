@@ -8,7 +8,7 @@ export class InMemoryUserRepository implements UserRepository {
   private readonly users = new Map<string, User>();
   private sequence = 0;
 
-  async create(user: Omit<User, 'createdAt'> & { createdAt?: string }): Promise<User> {
+  async create(user: Omit<User, 'id' | 'createdAt'> & { id?: string; createdAt?: string }): Promise<User> {
     this.sequence += 1;
     const created: User = {
       ...user,

@@ -17,16 +17,18 @@
 - **Contracts:** `backend/openapi.json` is the source of truth. FE calls BE via `NUXT_PUBLIC_API_BASE`.
 - **Future split:** Each agent becomes its own NestJS service/process behind a queue (OPEN). Do not split until Phase 1 slice works end-to-end.
 
-## Auth + persistence (Ticket 1, 2026-11-15)
+## Auth + persistence (Ticket 1, 2026-11-15; refactored: ports/adapters + config)
 ```
-[Nuxt FE] --POST /auth/login--> [auth module] --TokenService(port)--> [JwtTokenService]
-              |                                   |
-              | cookie qt_session (HttpOnly)      | PasswordHasher(port) -> BcryptPasswordHasher
-              v                                   v
-        [JwtAuthGuard (global)]            [UserRepository(port)] -> InMemoryUserRepository (DB adapter pending lock)
+[Nuxt FE] --POST /auth/login--> [auth/] --TokenService(port)--> [security/adapters/JwtTokenService]
+              |                                        |
+              | cookie qt_session (HttpOnly)           | PasswordHasher(port) -> security/adapters/BcryptPasswordHasher
+              v                                        v
+        [JwtAuthGuard (global)]            [UserRepository/ProjectRepository (ports)] -> persistence/adapters/InMemory* (DB adapter pending lock)
 ```
-
-- **Ports first** (`backend/src/common/ports/*`): `UserRepository`, `ProjectRepository`, `PasswordHasher`, `TokenService` — every provider is injected by token, so Postgres + sessions can replace the in-memory/JWT adapters without touching services.
+- Config: `ConfigModule.forRoot({ isGlobal: true })`; typed helpers in `backend/src/common/config/auth.config.ts` (`JWT_SECRET`, `JWT_TTL_SECONDS`, `SESSION_COOKIE_NAME`; cookie TTL derived from JWT TTL — single source; boot fails in production without a real `JWT_SECRET`).
+- Modules: `security/` (@Global: hasher + token service + `JwtModule.registerAsync`), `persistence/` (@Global: both in-memory repositories). Feature modules (`auth/`, `users/`, `projects/`) are NOT global — no circular imports.
+- **Ports** (`backend/src/common/ports/*`): `UserRepository`, `ProjectRepository`, `PasswordHasher`, `TokenService` — every provider is injected by token, so Postgres + sessions can replace the in-memory/JWT adapters without touching services.
+- Normalization: DTO `@Transform` (trim; emails lowercase) + service-level `normalizeEmail`/`normalizeName` (`common/utils/email.util.ts`); `ValidationPipe({ transform: true })`.
 - **Guard by default:** `JwtAuthGuard` and `RolesGuard` are global (`APP_GUARD`); only `/health`, `/auth/login`, `/auth/register-project` are `@Public()`.
 - **Roles:** `admin | analyst | tester | viewer` (mirrors the FE `/users` page).
 - **Still OPEN (owner to lock):** DB engine, auth transport (cookie+JWT default is the current adapter), BRD storage, LLM provider.
