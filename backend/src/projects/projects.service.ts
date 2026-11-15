@@ -11,8 +11,8 @@ export class ProjectsService {
   ) {}
 
   async list(actor: AuthenticatedUser): Promise<Project[]> {
-    const all = await this.projects.listAll();
-    return all.filter(project => project.id === actor.projectId);
+    const project = await this.projects.findById(actor.projectId);
+    return project ? [project] : [];
   }
 
   async get(actor: AuthenticatedUser, id: string): Promise<Project> {

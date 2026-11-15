@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { User } from '../../common/domain/user.entity';
 import { UserRepository } from '../../common/ports/user.repository.port';
@@ -40,7 +40,7 @@ export class InMemoryUserRepository implements UserRepository {
   async update(id: string, patch: Partial<User>): Promise<User | null> {
     const existing = this.users.get(id);
     if (!existing) {
-      throw new NotFoundException(`User ${id} not found.`);
+      return null;
     }
     const updated: User = { ...existing, ...patch, id: existing.id };
     this.users.set(id, updated);

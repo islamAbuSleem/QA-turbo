@@ -1,16 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
 
 import { Public } from '../common/decorators/public.decorator';
+import { HealthService, HealthStatus } from './health.service';
 
+@Public()
 @Controller('health')
 export class HealthController {
-  @Public()
+  constructor(private readonly health: HealthService) {}
+
   @Get()
-  check(): { status: string; dbConfigured: boolean; storage: string } {
-    return {
-      status: 'ok',
-      dbConfigured: Boolean(process.env.DATABASE_URL),
-      storage: process.env.DATABASE_URL ? 'postgres' : 'in-memory',
-    };
+  check(): HealthStatus {
+    return this.health.check();
   }
 }

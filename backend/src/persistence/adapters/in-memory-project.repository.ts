@@ -24,8 +24,4 @@ export class InMemoryProjectRepository implements ProjectRepository {
   async findById(id: string): Promise<Project | null> {
     return this.projects.get(id) ?? null;
   }
-
-  async listAll(): Promise<Project[]> {
-    return [...this.projects.values()];
-  }
 }
