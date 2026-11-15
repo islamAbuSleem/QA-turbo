@@ -1,8 +1,8 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { Project } from '../../common/domain/project.entity';
-import { PROJECT_REPOSITORY, ProjectRepository } from '../../common/ports/project.repository.port';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { Project } from '../common/domain/project.entity';
+import { PROJECT_REPOSITORY, ProjectRepository } from '../common/ports/project.repository.port';
 
 @Injectable()
 export class ProjectsService {

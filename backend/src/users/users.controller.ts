@@ -1,9 +1,9 @@
 import { Body, Controller, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { UserView } from '../../common/domain/user.entity';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { UserView } from '../common/domain/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 import { UsersService } from './users.service';

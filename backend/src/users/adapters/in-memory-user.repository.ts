@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { User } from '../../../common/domain/user.entity';
-import { UserRepository } from '../../../common/ports/user.repository.port';
+import { User } from '../../common/domain/user.entity';
+import { UserRepository } from '../../common/ports/user.repository.port';
 
 @Injectable()
 export class InMemoryUserRepository implements UserRepository {

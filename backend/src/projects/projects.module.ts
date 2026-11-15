@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 
-import { PROJECT_REPOSITORY } from '../../common/ports/project.repository.port';
+import { PROJECT_REPOSITORY } from '../common/ports/project.repository.port';
 import { InMemoryProjectRepository } from './adapters/in-memory-project.repository';
 import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';

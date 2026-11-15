@@ -1,6 +1,6 @@
 import { IsEmail, IsIn, IsString, MaxLength, MinLength } from 'class-validator';
 
-import { UserRole } from '../../../common/domain/user.entity';
+import { UserRole } from '../../common/domain/user.entity';
 
 export class CreateUserDto {
   @IsString()

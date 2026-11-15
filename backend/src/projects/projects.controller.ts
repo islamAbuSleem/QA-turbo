@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { Project } from '../../common/domain/project.entity';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { Project } from '../common/domain/project.entity';
 import { ProjectsService } from './projects.service';
 
 @Controller('projects')

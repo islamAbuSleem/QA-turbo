@@ -1,11 +1,11 @@
 import { ConflictException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { User, UserView, toUserView } from '../../common/domain/user.entity';
-import { PASSWORD_HASHER, PasswordHasher } from '../../common/ports/password.hasher.port';
-import { PROJECT_REPOSITORY, ProjectRepository } from '../../common/ports/project.repository.port';
-import { TOKEN_SERVICE, TokenService } from '../../common/ports/token.service.port';
-import { USER_REPOSITORY, UserRepository } from '../../common/ports/user.repository.port';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { User, UserView, toUserView } from '../common/domain/user.entity';
+import { PASSWORD_HASHER, PasswordHasher } from '../common/ports/password.hasher.port';
+import { PROJECT_REPOSITORY, ProjectRepository } from '../common/ports/project.repository.port';
+import { TOKEN_SERVICE, TokenService } from '../common/ports/token.service.port';
+import { USER_REPOSITORY, UserRepository } from '../common/ports/user.repository.port';
 import { LoginDto } from './dto/login.dto';
 import { RegisterProjectDto } from './dto/register-project.dto';
 

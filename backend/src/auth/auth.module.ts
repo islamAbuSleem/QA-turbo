@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { PASSWORD_HASHER } from '../../common/ports/password.hasher.port';
-import { TOKEN_SERVICE } from '../../common/ports/token.service.port';
+import { PASSWORD_HASHER } from '../common/ports/password.hasher.port';
+import { TOKEN_SERVICE } from '../common/ports/token.service.port';
 import { BcryptPasswordHasher } from './adapters/bcrypt.password.hasher';
 import { JwtTokenService } from './adapters/jwt.token.service';
 import { AuthController } from './auth.controller';

@@ -1,9 +1,9 @@
 import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { UserView, toUserView } from '../../common/domain/user.entity';
-import { PASSWORD_HASHER, PasswordHasher } from '../../common/ports/password.hasher.port';
-import { USER_REPOSITORY, UserRepository } from '../../common/ports/user.repository.port';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { UserView, toUserView } from '../common/domain/user.entity';
+import { PASSWORD_HASHER, PasswordHasher } from '../common/ports/password.hasher.port';
+import { USER_REPOSITORY, UserRepository } from '../common/ports/user.repository.port';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 

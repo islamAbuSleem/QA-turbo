@@ -1,11 +1,11 @@
 import { Body, Controller, Get, HttpCode, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
-import { Public } from '../../common/decorators/public.decorator';
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { AuthenticatedUser } from '../../common/domain/authenticated-user';
-import { UserView } from '../../common/domain/user.entity';
-import { SESSION_COOKIE_NAME, SESSION_TTL_MS } from '../../common/guards/session-cookie';
+import { Public } from '../common/decorators/public.decorator';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { AuthenticatedUser } from '../common/domain/authenticated-user';
+import { UserView } from '../common/domain/user.entity';
+import { SESSION_COOKIE_NAME, SESSION_TTL_MS } from '../common/guards/session-cookie';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterProjectDto } from './dto/register-project.dto';

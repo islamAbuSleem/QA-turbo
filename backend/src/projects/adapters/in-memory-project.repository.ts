@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { Project } from '../../../common/domain/project.entity';
-import { ProjectRepository } from '../../../common/ports/project.repository.port';
+import { Project } from '../../common/domain/project.entity';
+import { ProjectRepository } from '../../common/ports/project.repository.port';
 
 @Injectable()
 export class InMemoryProjectRepository implements ProjectRepository {
